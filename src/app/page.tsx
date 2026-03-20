@@ -19,16 +19,16 @@ const entryCards = [
   {
     href: "/blog",
     eyebrow: "Personal Blog",
-    title: "Notes, experiments, and build logs.",
+    title: "Static notes, architecture decisions, and build logs.",
     copy:
-      "A static writing layer for thoughts that should remain fast, readable, and always available on GitHub Pages.",
+      "Published notes live here as first-class static pages that remain readable and mirrorable on GitHub Pages.",
   },
   {
     href: "/se",
     eyebrow: "Speech Enhancement",
-    title: "Stable project framing plus a live route into the demo.",
+    title: "Stable project framing, sample strategy, and the live route.",
     copy:
-      "Static project context lives here. The working interactive demo is intended to run under se.soundadam.com.",
+      "This route explains what stays on the public site and what should run at se.soundadam.com.",
   },
   {
     href: "/contact",
@@ -66,9 +66,9 @@ export default function Home() {
             </Link>
             <Link
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--color-border)] bg-white/55 px-6 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-white"
-              href="/se"
+              href="/blog"
             >
-              Open SE project page
+              Read the notes
             </Link>
           </div>
           <div className="mt-12 grid gap-3 md:grid-cols-3">

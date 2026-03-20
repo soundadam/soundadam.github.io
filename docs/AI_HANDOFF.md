@@ -26,6 +26,9 @@ Current policy:
   - `/`
   - `/about`
   - `/blog`
+  - `/blog/static-vs-live`
+  - `/blog/research-threads`
+  - `/blog/worktree-notes`
   - `/se`
   - `/contact`
 

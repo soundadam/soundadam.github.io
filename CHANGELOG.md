@@ -32,7 +32,10 @@ Rollback rule:
   - keep static public content easy to debug and easy to mirror
 - Implemented in this version so far:
   - expanded the public IA to `about`, `blog`, `se`, and `contact`
+  - published initial static blog notes under `/blog/static-vs-live`, `/blog/research-threads`, and `/blog/worktree-notes`
   - rewrote the homepage around those four entry points
+  - kept navigation visible on mobile instead of hiding the route structure
+  - strengthened the `SE` page so it explains the static/live boundary directly
   - added content architecture documentation for `soundadam.com`, `soundadam.github.io`, and `se.soundadam.com`
   - documented privacy rules for resume-derived content
   - kept all rollback guidance explicitly Git-based

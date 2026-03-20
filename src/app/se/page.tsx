@@ -9,6 +9,12 @@ const staticAssets = [
   "links to code and papers",
 ];
 
+const liveCapabilities = [
+  "audio upload and enhancement inference",
+  "same-origin API routing under /api/*",
+  "health checks, logging, and deployment control",
+];
+
 export default function SePage() {
   return (
     <PageShell>
@@ -64,11 +70,40 @@ export default function SePage() {
             down, slow, or still evolving.
           </p>
           <Link
-            href="/blog"
+            href="/blog/static-vs-live"
             className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-white px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-[var(--color-panel)]"
           >
-            Read project notes
+            Read the architecture note
           </Link>
+        </article>
+      </section>
+
+      <section className="mt-6 grid gap-4 lg:grid-cols-2">
+        <article className="rounded-[34px] border border-white/50 bg-white/56 p-6 shadow-[0_18px_48px_rgba(24,20,16,0.08)] backdrop-blur">
+          <p className="text-sm tracking-[0.18em] text-[var(--color-accent-strong)] uppercase">
+            Current focus
+          </p>
+          <p className="mt-4 text-sm leading-7 text-[var(--color-text-muted)]">
+            The project is moving toward a reliable speech-enhancement surface:
+            controlled preprocessing, transparent evaluation, and an interface
+            that explains its own boundaries instead of hiding them behind a
+            single upload button.
+          </p>
+          <p className="mt-4 text-sm leading-7 text-[var(--color-text-muted)]">
+            This static project page should keep the work legible even before
+            the live service is fully online.
+          </p>
+        </article>
+
+        <article className="rounded-[34px] border border-white/50 bg-white/56 p-6 shadow-[0_18px_48px_rgba(24,20,16,0.08)] backdrop-blur">
+          <p className="text-sm tracking-[0.18em] text-[var(--color-accent-strong)] uppercase">
+            Live capabilities
+          </p>
+          <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-text-muted)]">
+            {liveCapabilities.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </article>
       </section>
     </PageShell>
