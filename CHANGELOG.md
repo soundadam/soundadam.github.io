@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.4 - 2026-03-20T11:52:00+08:00 - in progress
+## 0.2.5 - 2026-03-20T12:02:00+08:00 - in progress
+
+- Status:
+  - the homepage pool now emphasizes gravity more clearly
+  - landing motion includes heavier impact and rebound instead of only gentle settling
+  - `CHANGELOG.md` remains the single timestamped recovery log
+- Implemented in this version so far:
+  - added weight-sensitive settle duration for particles
+  - added deeper impact and rebound stages to the landing animation
+  - reduced lateral drift so the pool reads as heavier and less airy
+
+## 0.2.4 - 2026-03-20T11:52:00+08:00 - `4dbd8e6`
 
 - Status:
   - the homepage playground now prioritizes a denser, more settled pool behavior

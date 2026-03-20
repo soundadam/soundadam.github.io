@@ -19,8 +19,11 @@ type Particle = {
   bobX: number;
   bobY: number;
   bobDuration: number;
+  settleDuration: number;
   settleDelay: number;
   bobDelay: number;
+  impactDepth: number;
+  reboundHeight: number;
   drainX: number;
 };
 
@@ -57,6 +60,13 @@ function createPoolParticle(
   const enterX = sourceX === undefined ? 0 : sourceX - settledX;
   const enterY = sourceY === undefined ? 0 : sourceY - settledY;
   const settleDelay = Math.random() * 0.18;
+  const settleDuration =
+    0.74 +
+    Math.min(Math.abs(enterY) / 42, 0.52) +
+    lane * 0.04 +
+    Math.random() * 0.14;
+  const reboundHeight = 2.8 + (5 - lane) * 0.7 + Math.random() * 2.2;
+  const impactDepth = 4.5 + lane * 1.3 + Math.random() * 3.5;
 
   return {
     id,
@@ -67,11 +77,14 @@ function createPoolParticle(
     rotate: Math.random() * 24 - 12,
     enterX,
     enterY,
-    bobX: Math.random() * 6 - 3,
-    bobY: -(1.5 + Math.random() * 4.5),
-    bobDuration: 4.6 + Math.random() * 3.6,
+    bobX: Math.random() * 4.8 - 2.4,
+    bobY: -(0.9 + (5 - lane) * 0.35 + Math.random() * 1.8),
+    bobDuration: 5.2 + lane * 0.35 + Math.random() * 2.8,
+    settleDuration,
     settleDelay,
-    bobDelay: 0.92 + settleDelay,
+    bobDelay: settleDuration + settleDelay,
+    impactDepth,
+    reboundHeight,
     drainX: Math.random() * 42 - 21,
   };
 }
@@ -270,8 +283,11 @@ export function EmojiTerminal() {
                     ["--bob-x" as string]: `${particle.bobX}px`,
                     ["--bob-y" as string]: `${particle.bobY}px`,
                     ["--bob-duration" as string]: `${particle.bobDuration}s`,
+                    ["--settle-duration" as string]: `${particle.settleDuration}s`,
                     ["--settle-delay" as string]: `${particle.settleDelay}s`,
                     ["--bob-delay" as string]: `${particle.bobDelay}s`,
+                    ["--impact-depth" as string]: `${particle.impactDepth}px`,
+                    ["--rebound-height" as string]: `${particle.reboundHeight}px`,
                     ["--particle-rotate" as string]: `${particle.rotate}deg`,
                     ["--drain-x" as string]: `${particle.drainX}px`,
                   }}

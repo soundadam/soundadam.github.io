@@ -55,10 +55,13 @@ li {
   z-index: 20;
   user-select: none;
   transform: translate(-50%, -50%);
+  transform-origin: center 78%;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.26));
   animation:
-    emoji-settle 0.92s cubic-bezier(0.22, 0.8, 0.2, 1) var(--settle-delay, 0s) both,
-    emoji-bob var(--bob-duration, 6.4s) ease-in-out var(--bob-delay, 0.92s) infinite alternate;
+    emoji-settle var(--settle-duration, 1s) cubic-bezier(0.16, 0.86, 0.2, 1)
+      var(--settle-delay, 0s) both,
+    emoji-bob var(--bob-duration, 6.4s) ease-in-out var(--bob-delay, 1s)
+      infinite alternate;
   will-change: transform, opacity;
 }
 
@@ -73,15 +76,22 @@ li {
         calc(-50% + var(--enter-x, 0%)),
         calc(-50% + var(--enter-y, 0%))
       )
-      rotate(calc(var(--particle-rotate, 0deg) * 0.35))
-      scale(0.52);
+      rotate(calc(var(--particle-rotate, 0deg) * 0.28))
+      scale(0.44, 0.66);
   }
 
-  72% {
+  58% {
     opacity: 1;
-    transform: translate(-50%, calc(-50% + 5px))
-      rotate(calc(var(--particle-rotate, 0deg) * 1.04))
-      scale(1.06);
+    transform: translate(-50%, calc(-50% + var(--impact-depth, 8px)))
+      rotate(calc(var(--particle-rotate, 0deg) * 1.08))
+      scale(1.14, 0.84);
+  }
+
+  78% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - var(--rebound-height, 4px)))
+      rotate(calc(var(--particle-rotate, 0deg) * 0.94))
+      scale(0.94, 1.04);
   }
 
   100% {
