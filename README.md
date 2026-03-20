@@ -2,10 +2,11 @@
 
 Personal site repository.
 
-Current version: `0.2.1`
+Current version: `0.2.2`
 
 This repo hosts the static personal site for `soundadam.com` and `soundadam.github.io`.
 It is kept intentionally simple.
+`CHANGELOG.md` is the single file for timestamped version history.
 
 ## Development
 

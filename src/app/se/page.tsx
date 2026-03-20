@@ -27,7 +27,7 @@ export default function SePage() {
         </h1>
         <p className="mt-6 max-w-3xl text-base leading-8 text-[var(--color-text-muted)]">
           This route is the durable project page. It should remain accessible
-          from `soundadam.com` and `soundadam.github.io`, even if the server-side
+          from soundadam.com and soundadam.github.io, even if the server-side
           interactive demo is unavailable.
         </p>
       </section>
@@ -60,8 +60,8 @@ export default function SePage() {
               Live Layer
             </h2>
             <p className="mt-4 text-sm leading-7 text-[var(--color-text-muted)]">
-              The live system should sit behind `se.soundadam.com` with the
-              same-origin API pattern `/api/*`.
+              The live system should sit behind se.soundadam.com with the
+              same-origin API pattern /api/*.
             </p>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-text-muted)]">
               {liveCapabilities.map((item) => (

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { PageShell } from "@/components/page-shell";
+import { EmojiTerminal } from "@/components/emoji-terminal";
 
 const entries = [
   {
@@ -42,7 +43,7 @@ export default function Home() {
         <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--color-text-muted)]">
           The homepage stays intentionally light. Personal details live in the
           about page. Writing and project context stay static here. The live
-          demo belongs on `se.soundadam.com`.
+          demo belongs on se.soundadam.com.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
@@ -81,6 +82,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <EmojiTerminal />
     </PageShell>
   );
 }

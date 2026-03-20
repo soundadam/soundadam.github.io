@@ -49,3 +49,28 @@ li {
 ::selection {
   background: rgba(155, 77, 35, 0.18);
 }
+
+.emoji-burst-item {
+  position: absolute;
+  z-index: 20;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  animation: emoji-pop 0.42s ease-out both;
+}
+
+@keyframes emoji-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.35);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -56%) scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

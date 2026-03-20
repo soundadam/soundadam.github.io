@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.1 - 2026-03-20T11:10:00+08:00 - in progress
+## 0.2.2 - 2026-03-20T11:24:00+08:00 - in progress
+
+- Status:
+  - `CHANGELOG.md` remains the single file for timestamped public change tracking
+  - homepage keeps the restrained structure from `0.2.1`
+  - a small playful interaction has been added without turning the homepage back into a decorative landing page
+- Implemented in this version so far:
+  - added a terminal-style emoji playground to the homepage
+  - kept the animation fully client-side and static-host friendly
+  - continued version and timestamp tracking in `CHANGELOG.md`
+
+## 0.2.1 - 2026-03-20T11:10:00+08:00 - `7715214`
 
 - Status:
   - homepage has been simplified to reduce decorative card-heavy presentation

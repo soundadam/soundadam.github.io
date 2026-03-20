@@ -77,7 +77,7 @@ That demo work currently lives in `setrain` worktrees, not here.
 - `.github/workflows/deploy-pages.yml`
   - Pages deployment workflow
 - `CHANGELOG.md`
-  - retroactive and forward changelog
+  - single file for retroactive and forward timestamped changelog
 
 ## Local Review
 
