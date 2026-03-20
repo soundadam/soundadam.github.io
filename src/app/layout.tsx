@@ -39,6 +39,8 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} h-full antialiased`}
       data-theme="sand"
+      style={{ colorScheme: "light" }}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <Script id="theme-boot" strategy="beforeInteractive">

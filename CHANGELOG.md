@@ -15,7 +15,16 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.8 - 2026-03-20T13:15:00+08:00 - in progress
+## 0.2.9 - 2026-03-20T13:20:00+08:00 - in progress
+
+- Status:
+  - theme boot now avoids the dev-only hydration warning that appeared after adding pre-hydration palette selection
+  - local review remains centered on the new palette system, pointer fields, and responsive gravity band
+- Implemented in this version so far:
+  - added `suppressHydrationWarning` and a matching default `color-scheme` on the root html element
+  - kept the pre-hydration theme boot path so stored theme preference still applies early on static hosting
+
+## 0.2.8 - 2026-03-20T13:15:00+08:00 - `2b3b7f6`
 
 - Status:
   - the homepage now has a site-wide palette preference instead of widget-local color changes
