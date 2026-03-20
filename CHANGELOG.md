@@ -15,7 +15,17 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.3.2 - 2026-03-20T13:43:23+08:00 - in progress
+## 0.3.3 - 2026-03-20T13:47:50+08:00 - in progress
+
+- Status:
+  - footer terminal is being tightened into a bounded terminal window instead of a page-expanding transcript
+  - command output now includes simple read-only `cat` views for site routes
+- Implemented in this version so far:
+  - added a max-height terminal viewport with internal scroll and sticky prompt row
+  - capped terminal transcript length to keep the widget compact over time
+  - added `cat routes` and `cat <route>` summaries for footer navigation
+
+## 0.3.2 - 2026-03-20T13:43:23+08:00 - `f219a70`
 
 - Status:
   - footer navigation is moving into a terminal-style interaction surface instead of plain copy

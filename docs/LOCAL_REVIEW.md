@@ -1,8 +1,8 @@
 # Local Review
 
-- updated at: `2026-03-20T13:43:23+08:00`
-- base commit: `07c8dfb`
-- target version: `0.3.2`
+- updated at: `2026-03-20T13:47:50+08:00`
+- base commit: `f219a70`
+- target version: `0.3.3`
 
 ## Purpose
 
@@ -47,6 +47,8 @@ Review these routes explicitly:
 - whether the theme switcher reads as part of the site chrome instead of a generic pill
 - whether the footer terminal feels usable rather than gimmicky
 - whether `ls`, `pwd`, `cd about`, `cd blog`, `open se`, and `clear` behave reliably
+- whether the footer terminal now stays inside a fixed window with internal scroll
+- whether `cat routes` and `cat about` read clearly and do not flood the page
 - whether the gravity layer feels appropriately shallow on phones and broader on desktop
 - mobile navigation visibility
 - whether personal content is mostly confined to `/about`

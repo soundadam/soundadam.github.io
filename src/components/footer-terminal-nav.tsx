@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useEffect, useMemo, useState } from "react";
+import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 type HistoryLine = {
@@ -10,6 +10,7 @@ type HistoryLine = {
 
 const HISTORY_KEY = "soundadam-terminal-history-v1";
 const LAST_PATH_KEY = "soundadam-terminal-path-v1";
+const MAX_HISTORY_LINES = 56;
 
 const routeMap = {
   home: "/",
@@ -20,6 +21,34 @@ const routeMap = {
 } as const;
 
 const routeNames = Object.keys(routeMap) as Array<keyof typeof routeMap>;
+
+const routeSummaries: Record<keyof typeof routeMap, string[]> = {
+  home: [
+    "route: /",
+    "role: sparse front door",
+    "contains: entry cards, gravity layer, top-level links",
+  ],
+  about: [
+    "route: /about",
+    "role: concise public profile",
+    "contains: school, stage, rank, interests",
+  ],
+  blog: [
+    "route: /blog",
+    "role: static writing index",
+    "contains: architecture notes, workflow notes, research threads",
+  ],
+  se: [
+    "route: /se",
+    "role: stable speech-enhancement project page",
+    "contains: static/live split, repo link, deployment framing",
+  ],
+  contact: [
+    "route: /contact",
+    "role: direct contact surface",
+    "contains: email, github, public channels",
+  ],
+};
 
 function toPromptPath(pathname: string) {
   return pathname === "/" ? "~/soundadam" : `~/soundadam${pathname}`;
@@ -32,6 +61,8 @@ function helpLines() {
     "pwd",
     "cd home|about|blog|se|contact|..",
     "open home|about|blog|se|contact",
+    "cat routes",
+    "cat home|about|blog|se|contact",
     "help",
     "clear",
   ];
@@ -53,6 +84,7 @@ function initialHistory(pathname: string): HistoryLine[] {
 export function FooterTerminalNav() {
   const router = useRouter();
   const pathname = usePathname();
+  const bodyRef = useRef<HTMLDivElement>(null);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<HistoryLine[]>(() => {
     if (typeof window === "undefined") {
@@ -92,8 +124,17 @@ export function FooterTerminalNav() {
     window.sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history));
   }, [history]);
 
+  useEffect(() => {
+    const body = bodyRef.current;
+    if (!body) {
+      return;
+    }
+
+    body.scrollTop = body.scrollHeight;
+  }, [history]);
+
   function appendLines(lines: HistoryLine[]) {
-    setHistory((current) => [...current, ...lines]);
+    setHistory((current) => [...current, ...lines].slice(-MAX_HISTORY_LINES));
   }
 
   function navigateTo(target: keyof typeof routeMap) {
@@ -145,6 +186,38 @@ export function FooterTerminalNav() {
       return;
     }
 
+    if (command === "cat") {
+      if (!arg) {
+        appendLines([{ kind: "output", text: "usage: cat <route|routes>" }]);
+        return;
+      }
+
+      const target = arg.toLowerCase();
+
+      if (target === "routes") {
+        appendLines(
+          routeNames.map((name) => ({
+            kind: "output" as const,
+            text: `${name.padEnd(8, " ")} ${routeMap[name]}`,
+          })),
+        );
+        return;
+      }
+
+      if (target in routeSummaries) {
+        appendLines(
+          routeSummaries[target as keyof typeof routeSummaries].map((text) => ({
+            kind: "output" as const,
+            text,
+          })),
+        );
+        return;
+      }
+
+      appendLines([{ kind: "output", text: `unknown target: ${arg}` }]);
+      return;
+    }
+
     if (command === "cd" || command === "open") {
       if (!arg) {
         appendLines([
@@ -184,7 +257,7 @@ export function FooterTerminalNav() {
         <p className="footer-terminal-path">{promptPath}</p>
       </div>
 
-      <div className="footer-terminal-body">
+      <div ref={bodyRef} className="footer-terminal-body">
         {history.map((line, index) => (
           <p
             key={`${line.kind}-${index}`}

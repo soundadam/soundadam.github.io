@@ -1,8 +1,8 @@
 # Theme System
 
-- updated at: `2026-03-20T13:43:23+08:00`
-- base commit: `07c8dfb`
-- target version: `0.3.2`
+- updated at: `2026-03-20T13:47:50+08:00`
+- base commit: `f219a70`
+- target version: `0.3.3`
 
 ## Purpose
 
@@ -119,10 +119,13 @@ Supported commands are limited to site navigation and inspection:
 - `pwd`
 - `cd <route>`
 - `open <route>`
+- `cat routes`
+- `cat <route>`
 - `help`
 - `clear`
 
 State is persisted in `sessionStorage` so transcript survives in-site route changes.
+History is capped so the widget does not keep expanding forever.
 
 If commands break, inspect:
 
