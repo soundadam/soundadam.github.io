@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.3.3 - 2026-03-20T13:47:50+08:00 - in progress
+## 0.3.4 - 2026-03-20T13:56:17+08:00 - in progress
+
+- Status:
+  - footer terminal is being tightened toward a more recognizable shell prompt and window behavior
+  - disallowed paths such as `/` now return a permission-style error instead of navigating
+- Implemented in this version so far:
+  - changed the prompt style to `adam@cabo:...$`
+  - changed `ls` output into terminal-like columns
+  - added permission errors for restricted root-style access attempts
+  - made the terminal container itself fixed-height with internal scroll instead of expanding with history
+
+## 0.3.3 - 2026-03-20T13:47:50+08:00 - `dc61a26`
 
 - Status:
   - footer terminal is being tightened into a bounded terminal window instead of a page-expanding transcript

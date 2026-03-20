@@ -1,8 +1,8 @@
 # Theme System
 
-- updated at: `2026-03-20T13:47:50+08:00`
-- base commit: `f219a70`
-- target version: `0.3.3`
+- updated at: `2026-03-20T13:56:17+08:00`
+- base commit: `dc61a26`
+- target version: `0.3.4`
 
 ## Purpose
 
@@ -126,6 +126,7 @@ Supported commands are limited to site navigation and inspection:
 
 State is persisted in `sessionStorage` so transcript survives in-site route changes.
 History is capped so the widget does not keep expanding forever.
+The terminal viewport itself should stay fixed-height and scroll internally.
 
 If commands break, inspect:
 

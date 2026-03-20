@@ -52,13 +52,13 @@ That demo work currently lives in `setrain` worktrees, not here.
 
 ## Last Theme Pass
 
-- updated at: `2026-03-20T13:47:50+08:00`
-- base commit before this pass: `f219a70`
-- target version: `0.3.3`
+- updated at: `2026-03-20T13:56:17+08:00`
+- base commit before this pass: `dc61a26`
+- target version: `0.3.4`
 - active objective:
-  - make the footer terminal visually closer to a real terminal window
-  - constrain transcript growth with an internal scroll region and capped history
-  - add a small set of read-only `cat` style commands without turning it into a real shell
+  - move the footer prompt closer to a recognizable shell style
+  - ensure the terminal itself stays fixed in height and scrolls internally
+  - introduce permission-style responses for restricted root access
 
 ## Important Files
 
@@ -193,6 +193,7 @@ If the homepage looks wrong:
 10. verify both dark themes update article panels, secondary buttons, and the iframe shell consistently instead of leaving light surfaces behind
 11. verify footer terminal commands navigate correctly and the session transcript survives page transitions
 12. verify footer terminal stays bounded in height and does not keep stretching the page after repeated commands
+13. verify `cd /`, `open /`, and `cat /` respond with permission-style errors instead of changing route
 
 If deployment looks wrong:
 

@@ -22,6 +22,11 @@ const routeMap = {
 
 const routeNames = Object.keys(routeMap) as Array<keyof typeof routeMap>;
 
+function toPromptLabel(pathname: string) {
+  const promptPath = toPromptPath(pathname);
+  return `adam@cabo:${promptPath}$`;
+}
+
 const routeSummaries: Record<keyof typeof routeMap, string[]> = {
   home: [
     "route: /",
@@ -58,6 +63,7 @@ function helpLines() {
   return [
     "available commands:",
     "ls",
+    "ls <target>",
     "pwd",
     "cd home|about|blog|se|contact|..",
     "open home|about|blog|se|contact",
@@ -72,13 +78,32 @@ function initialHistory(pathname: string): HistoryLine[] {
   return [
     {
       kind: "system",
-      text: "footer terminal ready. type `help` to see commands.",
+      text: "cabo shell ready. type `help` to see commands.",
     },
     {
       kind: "system",
       text: `current route: ${toPromptPath(pathname)}`,
     },
   ];
+}
+
+function formatColumns(values: string[], width = 12) {
+  const columns = 3;
+  const rows = Math.ceil(values.length / columns);
+  const lines: string[] = [];
+
+  for (let row = 0; row < rows; row++) {
+    const parts: string[] = [];
+    for (let column = 0; column < columns; column++) {
+      const index = row + column * rows;
+      if (index < values.length) {
+        parts.push(values[index].padEnd(width, " "));
+      }
+    }
+    lines.push(parts.join(""));
+  }
+
+  return lines;
 }
 
 export function FooterTerminalNav() {
@@ -119,6 +144,7 @@ export function FooterTerminalNav() {
     return nextHistory;
   });
   const promptPath = useMemo(() => toPromptPath(pathname), [pathname]);
+  const promptLabel = useMemo(() => toPromptLabel(pathname), [pathname]);
 
   useEffect(() => {
     window.sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history));
@@ -135,6 +161,10 @@ export function FooterTerminalNav() {
 
   function appendLines(lines: HistoryLine[]) {
     setHistory((current) => [...current, ...lines].slice(-MAX_HISTORY_LINES));
+  }
+
+  function permissionDenied(target: string) {
+    appendLines([{ kind: "output", text: `permission denied: ${target}` }]);
   }
 
   function navigateTo(target: keyof typeof routeMap) {
@@ -157,7 +187,7 @@ export function FooterTerminalNav() {
     const [command, ...rest] = value.split(/\s+/);
     const arg = rest.join(" ");
 
-    appendLines([{ kind: "prompt", text: `${promptPath} $ ${value}` }]);
+    appendLines([{ kind: "prompt", text: `${promptLabel} ${value}` }]);
 
     if (command === "clear") {
       const nextHistory = initialHistory(pathname);
@@ -177,12 +207,22 @@ export function FooterTerminalNav() {
     }
 
     if (command === "ls") {
-      appendLines([
-        {
-          kind: "output",
-          text: routeNames.join("  "),
-        },
-      ]);
+      if (arg === "/") {
+        permissionDenied(arg);
+        return;
+      }
+
+      if (arg && arg !== "." && arg !== "~" && arg !== "~/soundadam") {
+        appendLines([{ kind: "output", text: `cannot access: ${arg}` }]);
+        return;
+      }
+
+      appendLines(
+        formatColumns(routeNames).map((text) => ({
+          kind: "output" as const,
+          text,
+        })),
+      );
       return;
     }
 
@@ -193,6 +233,11 @@ export function FooterTerminalNav() {
       }
 
       const target = arg.toLowerCase();
+
+      if (target === "/") {
+        permissionDenied(arg);
+        return;
+      }
 
       if (target === "routes") {
         appendLines(
@@ -226,8 +271,12 @@ export function FooterTerminalNav() {
         return;
       }
 
-      const nextTarget =
-        arg === ".." || arg === "~" || arg === "/" ? "home" : arg.toLowerCase();
+      if (arg === "/") {
+        permissionDenied(arg);
+        return;
+      }
+
+      const nextTarget = arg === ".." || arg === "~" ? "home" : arg.toLowerCase();
 
       if (nextTarget in routeMap) {
         navigateTo(nextTarget as keyof typeof routeMap);
@@ -275,7 +324,7 @@ export function FooterTerminalNav() {
           }}
         >
           <label className="footer-terminal-prompt" htmlFor="footer-terminal-input">
-            {promptPath} $
+            {promptLabel}
           </label>
           <input
             id="footer-terminal-input"

@@ -2,7 +2,7 @@
 
 Personal site repository.
 
-Current version: `0.3.3`
+Current version: `0.3.4`
 
 This repo hosts the static personal site for `soundadam.com` and `soundadam.github.io`.
 It is kept intentionally simple.

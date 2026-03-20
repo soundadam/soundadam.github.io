@@ -1,8 +1,8 @@
 # Local Review
 
-- updated at: `2026-03-20T13:47:50+08:00`
-- base commit: `f219a70`
-- target version: `0.3.3`
+- updated at: `2026-03-20T13:56:17+08:00`
+- base commit: `dc61a26`
+- target version: `0.3.4`
 
 ## Purpose
 
@@ -49,6 +49,8 @@ Review these routes explicitly:
 - whether `ls`, `pwd`, `cd about`, `cd blog`, `open se`, and `clear` behave reliably
 - whether the footer terminal now stays inside a fixed window with internal scroll
 - whether `cat routes` and `cat about` read clearly and do not flood the page
+- whether the prompt now reads more like a real shell
+- whether `cd /` and `cat /` return permission-style feedback
 - whether the gravity layer feels appropriately shallow on phones and broader on desktop
 - mobile navigation visibility
 - whether personal content is mostly confined to `/about`

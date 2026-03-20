@@ -347,6 +347,9 @@ li {
 }
 
 .footer-terminal {
+  display: flex;
+  flex-direction: column;
+  height: clamp(18.5rem, 42vh, 23rem);
   border: 1px solid var(--color-chrome-border);
   border-radius: 1.5rem;
   background:
@@ -387,14 +390,16 @@ li {
 }
 
 .footer-terminal-body {
-  display: grid;
-  gap: 0.45rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: block;
   padding: 1rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.83rem;
   line-height: 1.7;
-  max-height: 16.5rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
   background:
     radial-gradient(
       circle at top,
@@ -420,6 +425,7 @@ li {
 }
 
 .footer-terminal-line {
+  margin-bottom: 0.35rem;
   word-break: break-word;
   white-space: pre-wrap;
 }
@@ -440,10 +446,11 @@ li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-top: 0.2rem;
+  margin-top: 0.55rem;
   position: sticky;
   bottom: 0;
-  padding-top: 0.35rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.1rem;
   background: linear-gradient(
     180deg,
     transparent,
@@ -455,6 +462,7 @@ li {
   flex: 0 0 auto;
   color: var(--color-text);
   font-weight: 600;
+  font-size: 0.78rem;
 }
 
 .footer-terminal-input {
@@ -485,5 +493,9 @@ li {
     flex-direction: column;
     align-items: stretch;
     gap: 0.3rem;
+  }
+
+  .footer-terminal {
+    height: 20rem;
   }
 }
