@@ -33,9 +33,9 @@ Review these routes explicitly:
 ## Review Focus
 
 - typography scale and spacing rhythm
-- header balance and hero composition
+- whether the homepage feels restrained instead of decorative
 - mobile navigation visibility
-- `setrain` entry prominence
+- whether personal content is mostly confined to `/about`
 - mobile layout behavior
 - whether the page feels sparse in a deliberate way, not unfinished
 

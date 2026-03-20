@@ -10,12 +10,12 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="mb-12 rounded-[32px] border border-white/60 bg-white/54 px-4 py-4 shadow-[0_10px_30px_rgba(24,20,16,0.08)] backdrop-blur md:rounded-full md:px-6">
+    <header className="mb-14 border-b border-[var(--color-border)] pb-4">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <Link href="/" className="flex items-center gap-3 text-inherit">
-          <div className="h-2.5 w-2.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_18px_rgba(255,107,44,0.6)]" />
+          <div className="h-2 w-2 rounded-full bg-[var(--color-text)]" />
           <div>
-            <p className="font-[family-name:var(--font-display)] text-sm font-semibold tracking-[0.22em] text-[var(--color-accent-strong)] uppercase">
+            <p className="font-[family-name:var(--font-display)] text-sm font-semibold tracking-[0.18em] text-[var(--color-text)] uppercase">
               soundadam
             </p>
           </div>

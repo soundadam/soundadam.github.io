@@ -106,10 +106,10 @@ pnpm build
 Current visual intent:
 
 - sparse rather than content-heavy
-- editorial and technical, not startup-generic
-- warm surfaces instead of flat white
-- strong display typography with restrained copy density
-- `setrain` as the single most important outbound path
+- simple and calm rather than decorative
+- homepage as a quiet entry point, not a self-promotional landing page
+- personal details concentrated on `/about`
+- `se` kept visible, but not at the cost of clarity
 
 Do not collapse the page into generic Bootstrap blocks just because Bootstrap is present. Bootstrap is the portability baseline, not the design language.
 

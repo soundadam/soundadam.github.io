@@ -15,7 +15,20 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.0 - 2026-03-20T10:53:59+08:00 - in progress
+## 0.2.1 - 2026-03-20T11:10:00+08:00 - in progress
+
+- Status:
+  - homepage has been simplified to reduce decorative card-heavy presentation
+  - personal details are being moved off the homepage and kept mainly on `/about`
+  - public profile copy is intentionally plain because the site represents an undergraduate-stage resume
+- Implemented in this version so far:
+  - rewrote the homepage as a restrained entry page instead of a showcase layout
+  - simplified the `about` page into a clearer public summary
+  - simplified `blog`, `se`, and `contact` into more document-like pages
+  - reduced global visual effects and chrome intensity
+  - rewrote `README.md` into a shorter, clearer project readme
+
+## 0.2.0 - 2026-03-20T10:53:59+08:00 - `ca19203`
 
 - Status:
   - repository is now the primary working surface
