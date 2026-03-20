@@ -50,17 +50,15 @@ The footer terminal is intentionally a bounded pseudo-shell for navigation only.
 - `@xterm/addon-fit`
 - static export enabled in `next.config.ts`
 
-## Last Terminal Beta Pass
+## Last Server Prep Pass
 
 - updated at: `2026-03-20T14:47:30+08:00`
-- base commit before this pass: `c9dfe39`
-- implementation commit: `aae8124`
-- target version: `0.3.6`
+- base commit before this pass: `c1b1b1a`
+- target version: `0.3.7`
 - active objective:
-  - add a dedicated `/term` page for the real terminal beta path
-  - keep the footer shell fake, constrained, and navigational
-  - prepare for Ubuntu-hosted `xterm.js -> WebSocket -> PTY -> containerized Codex`
-  - avoid connecting the site to the host login shell directly
+  - keep `/term` isolated as the real terminal beta path
+  - prepare Ubuntu deployment assets for static hosting plus future websocket transport
+  - preserve the safety boundary between the public site and the future Codex backend
 
 ## Important Files
 
@@ -95,10 +93,16 @@ The footer terminal is intentionally a bounded pseudo-shell for navigation only.
   - homepage wrapper for the transplanted gravity demo
 - `docs/TERM_BETA.md`
   - server-facing notes for the isolated terminal beta route
+- `docs/UBUNTU_DEPLOY.md`
+  - Ubuntu migration notes for static hosting and reserved websocket proxying
 - `docs/LOCAL_REVIEW.md`
   - route-by-route local review checklist
 - `docs/PARALLEL_TRACKS.md`
   - active worktree split
+- `deploy/nginx/soundadam.com.conf`
+  - nginx config for serving `out/` and reserving `/api/term/socket`
+- `deploy/publish-static.sh`
+  - local helper for building and rsyncing static output to Ubuntu
 - `CHANGELOG.md`
   - single file for timestamped changelog and rollback references
 
@@ -135,6 +139,12 @@ Preferred backend shape:
 - explicit workspace mount only
 - no host home directory, SSH keys, or Docker socket
 - retain session logging server-side
+
+Current deployment split:
+
+- GitHub Pages can continue serving the fallback static site
+- Ubuntu can serve the same static export from nginx
+- nginx should reserve `/api/term/socket` for the later websocket/PTY/container bridge
 
 ## Rollback Procedure
 

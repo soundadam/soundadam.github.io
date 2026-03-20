@@ -2,7 +2,7 @@
 
 Personal site repository.
 
-Current version: `0.3.5`
+Current version: `0.3.7`
 
 This repo hosts the static personal site for `soundadam.com` and `soundadam.github.io`.
 It is kept intentionally simple.
@@ -42,4 +42,8 @@ The site is statically exported for GitHub Pages.
 
 ## Deployment
 
-Push to `main` and let GitHub Actions deploy the static export.
+- GitHub Pages remains the stable fallback deployment.
+- Ubuntu server deployment notes now live in `docs/UBUNTU_DEPLOY.md`.
+- A publish helper is available at `deploy/publish-static.sh`.
+- An nginx site config is available at `deploy/nginx/soundadam.com.conf`.
+- `/term` is safe to publish before the websocket backend exists; it stays detached until `/api/term/socket` is implemented.

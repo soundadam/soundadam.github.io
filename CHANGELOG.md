@@ -15,6 +15,17 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
+## 0.3.7 - 2026-03-20T14:58:50+08:00 - in progress
+
+- Status:
+  - the repo is now being prepared for Ubuntu migration
+  - static deployment assets are being added without forcing the terminal backend to exist yet
+- Implemented in this version so far:
+  - added Ubuntu deployment notes under `docs/UBUNTU_DEPLOY.md`
+  - added `deploy/publish-static.sh` for local build-and-rsync publishing
+  - added `deploy/nginx/soundadam.com.conf` for static hosting plus reserved `/api/term/socket`
+  - refreshed the handoff docs and readme to reflect the Ubuntu migration path
+
 ## 0.3.6 - 2026-03-20T14:47:30+08:00 - `aae8124`
 
 - Status:
