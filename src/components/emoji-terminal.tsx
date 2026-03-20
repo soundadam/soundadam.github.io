@@ -14,10 +14,14 @@ type Particle = {
   y: number;
   size: number;
   rotate: number;
-  driftX: number;
-  driftY: number;
-  duration: number;
-  delay: number;
+  enterX: number;
+  enterY: number;
+  bobX: number;
+  bobY: number;
+  bobDuration: number;
+  settleDelay: number;
+  bobDelay: number;
+  drainX: number;
 };
 
 const emojis = ["🙂", "😄", "🤖", "🎧", "🔊", "✨", "🫧", "🧠", "🌊", "🍊"];
@@ -26,28 +30,55 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
-function makeParticle(id: number, x: number, y: number): Particle {
+function pickLane() {
+  const roll = Math.random();
+
+  if (roll < 0.12) return 0;
+  if (roll < 0.3) return 1;
+  if (roll < 0.56) return 2;
+  if (roll < 0.8) return 3;
+  if (roll < 0.94) return 4;
+  return 5;
+}
+
+function createPoolParticle(
+  id: number,
+  anchorX?: number,
+  sourceX?: number,
+  sourceY?: number,
+): Particle {
+  const lane = pickLane();
+  const settledX = clamp(
+    (anchorX ?? 50) + (Math.random() * 26 - 13) - (lane - 2.5) * 0.6,
+    7,
+    93,
+  );
+  const settledY = clamp(62 + lane * 4.8 + Math.random() * 6, 60, 92);
+  const enterX = sourceX === undefined ? 0 : sourceX - settledX;
+  const enterY = sourceY === undefined ? 0 : sourceY - settledY;
+  const settleDelay = Math.random() * 0.18;
+
   return {
     id,
     emoji: emojis[Math.floor(Math.random() * emojis.length)],
-    x,
-    y,
-    size: 18 + Math.floor(Math.random() * 20),
-    rotate: Math.random() * 28 - 14,
-    driftX: Math.random() * 32 - 16,
-    driftY: -6 - Math.random() * 18,
-    duration: 5.4 + Math.random() * 4.8,
-    delay: Math.random() * 0.35,
+    x: settledX,
+    y: settledY,
+    size: 18 + Math.floor(Math.random() * 18) + (5 - lane),
+    rotate: Math.random() * 24 - 12,
+    enterX,
+    enterY,
+    bobX: Math.random() * 6 - 3,
+    bobY: -(1.5 + Math.random() * 4.5),
+    bobDuration: 4.6 + Math.random() * 3.6,
+    settleDelay,
+    bobDelay: 0.92 + settleDelay,
+    drainX: Math.random() * 42 - 21,
   };
 }
 
 function makeSeedParticles(count: number) {
   return Array.from({ length: count }, (_, index) =>
-    makeParticle(
-      index + 1,
-      8 + Math.random() * 84,
-      18 + Math.random() * 70,
-    ),
+    createPoolParticle(index + 1, 18 + Math.random() * 64),
   );
 }
 
@@ -56,7 +87,7 @@ export function EmojiTerminal() {
   const drainTimeoutRef = useRef<number | null>(null);
   const [mode, setMode] = useState<PlaygroundMode>("pool");
   const [transitionState, setTransitionState] = useState<TransitionState>("idle");
-  const [particles, setParticles] = useState<Particle[]>(() => makeSeedParticles(34));
+  const [particles, setParticles] = useState<Particle[]>(() => makeSeedParticles(46));
   const [activeSnippetId, setActiveSnippetId] = useState(sourceSnippets[0].id);
   const [history, setHistory] = useState<string[]>([
     "$ ls",
@@ -89,16 +120,17 @@ export function EmojiTerminal() {
     const baseX = ((event.clientX - rect.left) / rect.width) * 100;
     const baseY = ((event.clientY - rect.top) / rect.height) * 100;
 
-    const burst = Array.from({ length: 10 }, () => {
+    const burst = Array.from({ length: 12 }, () => {
       idRef.current += 1;
-      return makeParticle(
+      return createPoolParticle(
         idRef.current,
-        clamp(baseX + (Math.random() * 18 - 9), 5, 95),
-        clamp(baseY + (Math.random() * 18 - 9), 10, 92),
+        clamp(baseX + (Math.random() * 12 - 6), 10, 90),
+        clamp(baseX + (Math.random() * 16 - 8), 5, 95),
+        clamp(baseY + (Math.random() * 12 - 6), 6, 88),
       );
     });
 
-    setParticles((current) => [...current.slice(-170), ...burst]);
+    setParticles((current) => [...current.slice(-220), ...burst]);
   }
 
   function openTerminal() {
@@ -110,7 +142,7 @@ export function EmojiTerminal() {
     drainTimeoutRef.current = window.setTimeout(() => {
       setMode("terminal");
       setTransitionState("idle");
-    }, 850);
+    }, 960);
   }
 
   function openPool() {
@@ -121,12 +153,12 @@ export function EmojiTerminal() {
     setMode("pool");
     setTransitionState("idle");
     setParticles((current) =>
-      current.length > 18 ? current : [...current, ...makeSeedParticles(18)],
+      current.length > 24 ? current : [...current, ...makeSeedParticles(24)],
     );
   }
 
-  function clearPool() {
-    setParticles([]);
+  function calmPool() {
+    setParticles(makeSeedParticles(22));
   }
 
   function inspectSnippet(snippetId: string) {
@@ -150,11 +182,11 @@ export function EmojiTerminal() {
             Playground
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-[-0.03em] text-[var(--color-text)]">
-            Particle pool first, terminal only if you want to inspect code.
+            A particle pool that can drain into source mode.
           </h2>
           <p className="mt-3 text-sm leading-7 text-[var(--color-text-muted)]">
-            The default state is ambient. If you switch to terminal mode, the
-            pool drains downward and turns into a curated source viewer.
+            The default state is a denser pool with slower motion and more
+            settling. Terminal mode still exists, but only as a second layer.
           </p>
         </div>
 
@@ -184,10 +216,10 @@ export function EmojiTerminal() {
           {mode === "pool" ? (
             <button
               type="button"
-              onClick={clearPool}
+              onClick={calmPool}
               className="inline-flex min-h-10 items-center justify-center rounded-full border border-[var(--color-border)] px-4 text-xs font-semibold tracking-[0.08em] text-[var(--color-text)] uppercase transition-colors hover:bg-white"
             >
-              clear
+              calm
             </button>
           ) : null}
         </div>
@@ -209,15 +241,17 @@ export function EmojiTerminal() {
               onClick={handleSpawn}
               className="relative min-h-[360px] cursor-crosshair overflow-hidden px-5 py-5"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(237,132,74,0.12),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_18%)]" />
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,transparent,rgba(12,9,13,0.42))]" />
-              <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.14)_1px,transparent_1px)] [background-size:32px_32px]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(237,132,74,0.11),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.025),transparent_18%)]" />
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent,rgba(15,11,15,0.55))]" />
+              <div className="absolute inset-x-8 bottom-10 h-20 rounded-[999px] bg-[radial-gradient(ellipse_at_center,rgba(231,121,74,0.18),rgba(231,121,74,0.02)_70%,transparent_78%)] blur-[18px]" />
+              <div className="absolute inset-x-6 bottom-7 h-12 rounded-[999px] border border-[rgba(255,255,255,0.06)] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.01))] opacity-70 blur-[0.4px]" />
+              <div className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.13)_1px,transparent_1px)] [background-size:32px_32px]" />
 
               <div className="pointer-events-none relative z-10 max-w-lg text-sm leading-7 text-[#ddd1cb]">
-                <p>$ pool --ambient</p>
+                <p>$ pool --settle</p>
                 <p className="mt-2 text-[#b8aaa4]">
-                  Click anywhere to release more particles. Switch modes if you
-                  want to browse source instead.
+                  Click to add more particles. They now settle toward the lower
+                  half of the frame before slowly drifting in place.
                 </p>
               </div>
 
@@ -231,11 +265,15 @@ export function EmojiTerminal() {
                     left: `${particle.x}%`,
                     top: `${particle.y}%`,
                     fontSize: `${particle.size}px`,
-                    rotate: `${particle.rotate}deg`,
-                    ["--drift-x" as string]: `${particle.driftX}px`,
-                    ["--drift-y" as string]: `${particle.driftY}px`,
-                    ["--pool-duration" as string]: `${particle.duration}s`,
-                    ["--pool-delay" as string]: `${particle.delay}s`,
+                    ["--enter-x" as string]: `${particle.enterX}%`,
+                    ["--enter-y" as string]: `${particle.enterY}%`,
+                    ["--bob-x" as string]: `${particle.bobX}px`,
+                    ["--bob-y" as string]: `${particle.bobY}px`,
+                    ["--bob-duration" as string]: `${particle.bobDuration}s`,
+                    ["--settle-delay" as string]: `${particle.settleDelay}s`,
+                    ["--bob-delay" as string]: `${particle.bobDelay}s`,
+                    ["--particle-rotate" as string]: `${particle.rotate}deg`,
+                    ["--drain-x" as string]: `${particle.drainX}px`,
                   }}
                 >
                   {particle.emoji}

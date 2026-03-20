@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.3 - 2026-03-20T11:38:00+08:00 - in progress
+## 0.2.4 - 2026-03-20T11:52:00+08:00 - in progress
+
+- Status:
+  - the homepage playground now prioritizes a denser, more settled pool behavior
+  - particles no longer read as evenly floating decorations
+  - `CHANGELOG.md` remains the single timestamped recovery log
+- Implemented in this version so far:
+  - rewrote particle generation so new elements settle into the lower half of the frame
+  - added softer arrival, bobbing, and drain animations for a more pooled feeling
+  - adjusted the pool surface styling to suggest depth and accumulation
+
+## 0.2.3 - 2026-03-20T11:38:00+08:00 - `498d2e8`
 
 - Status:
   - the homepage playground is now structured around a default particle pool instead of a click-targeted terminal
