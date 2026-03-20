@@ -70,8 +70,12 @@ That demo work currently lives in `setrain` worktrees, not here.
   - Bootstrap CSS import
 - `src/app/globals.css`
   - custom design tokens and global page styling
+- `src/components/emoji-terminal.tsx`
+  - homepage playground with pool mode, drain transition, and terminal mode
 - `src/content/blog-posts.ts`
   - static post metadata used by the blog index
+- `src/content/source-snippets.ts`
+  - curated source content for the terminal viewer
 - `public/CNAME`
   - custom domain record for GitHub Pages
 - `.github/workflows/deploy-pages.yml`
@@ -110,6 +114,7 @@ Current visual intent:
 - homepage as a quiet entry point, not a self-promotional landing page
 - personal details concentrated on `/about`
 - `se` kept visible, but not at the cost of clarity
+- the playground should feel like an optional side detail, not the primary narrative
 
 Do not collapse the page into generic Bootstrap blocks just because Bootstrap is present. Bootstrap is the portability baseline, not the design language.
 
@@ -155,6 +160,7 @@ If the homepage looks wrong:
 5. verify GitHub Pages workflow still uploads the `out/` directory
 6. if behavior changed recently, compare against the last known-good commit from `CHANGELOG.md`
 7. on mobile, verify the header nav is still visible and wrapping instead of disappearing
+8. verify the homepage playground still defaults to pool mode and drains into terminal mode cleanly
 
 If deployment looks wrong:
 

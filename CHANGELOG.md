@@ -15,7 +15,19 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.2 - 2026-03-20T11:24:00+08:00 - in progress
+## 0.2.3 - 2026-03-20T11:38:00+08:00 - in progress
+
+- Status:
+  - the homepage playground is now structured around a default particle pool instead of a click-targeted terminal
+  - terminal mode is now optional and entered deliberately
+  - `CHANGELOG.md` remains the single timestamped recovery log
+- Implemented in this version so far:
+  - replaced the simple emoji burst box with a calmer particle pool
+  - added a drain transition when switching from pool mode into terminal mode
+  - added a curated Ubuntu-style source viewer with command history and file switching
+  - added source snippet content for static repo browsing
+
+## 0.2.2 - 2026-03-20T11:24:00+08:00 - `016fd49`
 
 - Status:
   - `CHANGELOG.md` remains the single file for timestamped public change tracking
