@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.6 - 2026-03-20T12:18:00+08:00 - in progress
+## 0.2.7 - 2026-03-20T12:28:00+08:00 - in progress
+
+- Status:
+  - the transplanted gravity effect has been demoted into a bottom-page ambient layer
+  - explanatory text around the demo has been removed
+  - `CHANGELOG.md` remains the single timestamped recovery log
+- Implemented in this version so far:
+  - removed descriptive wrapper copy from the homepage section
+  - removed the demo-side info panel and reduced the empty-state prompt to a minimal icon
+  - reduced the embedded height so the gravity layer reads as visual atmosphere instead of a feature block
+
+## 0.2.6 - 2026-03-20T12:18:00+08:00 - `46da074`
 
 - Status:
   - the homepage playground has been replaced by a direct transplant of the stronger local gravity demo
