@@ -15,7 +15,7 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.3.7 - 2026-03-20T14:58:50+08:00 - in progress
+## 0.3.7 - 2026-03-20T14:58:50+08:00 - `1cf2acc`
 
 - Status:
   - the repo is now being prepared for Ubuntu migration
