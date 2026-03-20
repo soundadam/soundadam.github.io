@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+:root[data-theme="sand"] {
   --background: #f7f4ee;
   --foreground: #181410;
   --font-display: "Space Grotesk", "Avenir Next", sans-serif;
@@ -12,6 +13,36 @@
   --color-support: #455d57;
   --color-border: rgba(48, 36, 30, 0.12);
   --color-cream: #fffaf5;
+  --color-panel: rgba(255, 251, 246, 0.72);
+  --color-panel-strong: rgba(255, 255, 255, 0.92);
+}
+
+:root[data-theme="mist"] {
+  --background: #edf1f3;
+  --foreground: #152028;
+  --color-text: #152028;
+  --color-text-muted: #53616c;
+  --color-accent: #33688a;
+  --color-accent-strong: #1f4e6d;
+  --color-support: #617a66;
+  --color-border: rgba(21, 32, 40, 0.12);
+  --color-cream: #f7fbfd;
+  --color-panel: rgba(248, 251, 253, 0.72);
+  --color-panel-strong: rgba(255, 255, 255, 0.92);
+}
+
+:root[data-theme="night"] {
+  --background: #12161a;
+  --foreground: #eef1eb;
+  --color-text: #eef1eb;
+  --color-text-muted: #a3aca3;
+  --color-accent: #d48653;
+  --color-accent-strong: #eea26a;
+  --color-support: #89a18e;
+  --color-border: rgba(238, 241, 235, 0.14);
+  --color-cream: #0f1316;
+  --color-panel: rgba(23, 28, 32, 0.72);
+  --color-panel-strong: rgba(34, 41, 46, 0.94);
 }
 
 @theme inline {
@@ -25,7 +56,7 @@
 }
 
 html {
-  background: #f7f4ee;
+  background: var(--background);
   scroll-behavior: smooth;
 }
 
@@ -35,6 +66,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.65;
   text-rendering: optimizeLegibility;
+  transition: background-color 220ms ease, color 220ms ease;
 }
 
 a {
@@ -48,103 +80,4 @@ li {
 
 ::selection {
   background: rgba(155, 77, 35, 0.18);
-}
-
-.emoji-pool-item {
-  position: absolute;
-  z-index: 20;
-  user-select: none;
-  transform: translate(-50%, -50%);
-  transform-origin: center 78%;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.26));
-  animation:
-    emoji-settle var(--settle-duration, 1s) cubic-bezier(0.16, 0.86, 0.2, 1)
-      var(--settle-delay, 0s) both,
-    emoji-bob var(--bob-duration, 6.4s) ease-in-out var(--bob-delay, 1s)
-      infinite alternate;
-  will-change: transform, opacity;
-}
-
-.emoji-pool-item-drain {
-  animation: emoji-drain 0.94s cubic-bezier(0.16, 0.78, 0.18, 1) forwards;
-}
-
-@keyframes emoji-settle {
-  0% {
-    opacity: 0;
-    transform: translate(
-        calc(-50% + var(--enter-x, 0%)),
-        calc(-50% + var(--enter-y, 0%))
-      )
-      rotate(calc(var(--particle-rotate, 0deg) * 0.28))
-      scale(0.44, 0.66);
-  }
-
-  58% {
-    opacity: 1;
-    transform: translate(-50%, calc(-50% + var(--impact-depth, 8px)))
-      rotate(calc(var(--particle-rotate, 0deg) * 1.08))
-      scale(1.14, 0.84);
-  }
-
-  78% {
-    opacity: 1;
-    transform: translate(-50%, calc(-50% - var(--rebound-height, 4px)))
-      rotate(calc(var(--particle-rotate, 0deg) * 0.94))
-      scale(0.94, 1.04);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(var(--particle-rotate, 0deg))
-      scale(1);
-  }
-}
-
-@keyframes emoji-bob {
-  0% {
-    transform: translate(-50%, -50%) rotate(var(--particle-rotate, 0deg))
-      scale(1);
-  }
-
-  100% {
-    transform: translate(
-        calc(-50% + var(--bob-x, 0px)),
-        calc(-50% + var(--bob-y, -2px))
-      )
-      rotate(calc(var(--particle-rotate, 0deg) + 2deg))
-      scale(1.02);
-  }
-}
-
-@keyframes emoji-drain {
-  0% {
-    opacity: 1;
-    transform: translate(
-        calc(-50% + var(--bob-x, 0px) * 0.2),
-        calc(-50% + 0px)
-      )
-      rotate(var(--particle-rotate, 0deg))
-      scale(1);
-  }
-
-  14% {
-    opacity: 1;
-    transform: translate(
-        calc(-50% + var(--bob-x, 0px) * 0.1),
-        calc(-50% + 12px)
-      )
-      rotate(calc(var(--particle-rotate, 0deg) * 0.7))
-      scale(0.98);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(
-        calc(-50% + var(--drain-x, 0px)),
-        430px
-      )
-      rotate(calc(var(--particle-rotate, 0deg) + 18deg))
-      scale(0.78);
-  }
 }

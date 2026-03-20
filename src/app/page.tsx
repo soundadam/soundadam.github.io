@@ -33,27 +33,27 @@ const entries = [
 export default function Home() {
   return (
     <PageShell>
-      <section className="max-w-4xl py-8">
+      <section className="max-w-4xl py-6 sm:py-8">
         <p className="text-sm tracking-[0.16em] text-[var(--color-text-muted)] uppercase">
           soundadam
         </p>
-        <h1 className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-4xl leading-tight font-semibold tracking-[-0.05em] text-[var(--color-text)] sm:text-5xl">
+        <h1 className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-[2.35rem] leading-[1.02] font-semibold tracking-[-0.05em] text-[var(--color-text)] sm:text-5xl lg:text-[4.35rem]">
           A personal site for notes, current work, and a stable path to the speech enhancement demo.
         </h1>
-        <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--color-text-muted)]">
+        <p className="mt-5 max-w-[38rem] text-[0.98rem] leading-8 text-[var(--color-text-muted)] sm:mt-6 sm:text-base">
           The homepage stays intentionally light. Personal details live in the
           about page. Writing and project context stay static here. The live
           demo belongs on se.soundadam.com.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--color-text)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-strong)]"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--color-text)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-strong)] sm:w-auto"
             href="/se"
           >
             Open SE page
           </Link>
           <Link
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--color-border)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-white"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[var(--color-border)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-white sm:w-auto"
             href="/about"
           >
             About me
@@ -61,18 +61,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-8 border-t border-[var(--color-border)] pt-8">
-        <div className="grid gap-6 md:grid-cols-2">
+      <section className="mt-6 border-t border-[var(--color-border)] pt-7 sm:mt-8 sm:pt-8">
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
           {entries.map((entry) => (
             <Link
               key={entry.href}
               href={entry.href}
-              className="border-b border-[var(--color-border)] pb-6 transition-colors hover:text-[var(--color-accent-strong)]"
+              className="border-b border-[var(--color-border)] pb-5 transition-colors hover:text-[var(--color-accent-strong)] sm:pb-6"
             >
               <p className="text-sm tracking-[0.16em] text-[var(--color-text-muted)] uppercase">
                 {entry.label}
               </p>
-              <h2 className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-[-0.03em] text-[var(--color-text)]">
+              <h2 className="mt-3 font-[family-name:var(--font-display)] text-[1.65rem] font-semibold tracking-[-0.03em] text-[var(--color-text)] sm:text-2xl">
                 {entry.title}
               </h2>
               <p className="mt-4 text-sm leading-7 text-[var(--color-text-muted)]">

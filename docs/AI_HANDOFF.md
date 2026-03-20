@@ -70,6 +70,8 @@ That demo work currently lives in `setrain` worktrees, not here.
   - Bootstrap CSS import
 - `src/app/globals.css`
   - custom design tokens and global page styling
+- `src/components/theme-toggle.tsx`
+  - client-side site-wide theme preference control
 - `src/components/gravity-playground.tsx`
   - homepage wrapper for the transplanted gravity demo
 - `src/content/blog-posts.ts`
@@ -77,9 +79,9 @@ That demo work currently lives in `setrain` worktrees, not here.
 - `public/playground/gravity.html`
   - self-contained embedded demo entry point
 - `public/playground/gravity.css`
-  - transplanted demo styling
+  - transplanted demo styling and lower-left field controls
 - `public/playground/gravity.js`
-  - transplanted physics and rendering logic
+  - transplanted physics and rendering logic with mouse-nearby pull / push fields
 - `public/CNAME`
   - custom domain record for GitHub Pages
 - `.github/workflows/deploy-pages.yml`
@@ -120,6 +122,7 @@ Current visual intent:
 - `se` kept visible, but not at the cost of clarity
 - the playground should feel like an optional side detail, not the primary narrative
 - when possible, prefer stronger transplanted interactions over weaker hand-made imitations
+- theme preference should affect the overall site palette, not a single widget
 
 Do not collapse the page into generic Bootstrap blocks just because Bootstrap is present. Bootstrap is the portability baseline, not the design language.
 
@@ -166,6 +169,7 @@ If the homepage looks wrong:
 6. if behavior changed recently, compare against the last known-good commit from `CHANGELOG.md`
 7. on mobile, verify the header nav is still visible and wrapping instead of disappearing
 8. verify `/playground/gravity.html` loads and the iframe embed on `/` still works
+9. verify theme selection persists and updates the page palette before and after navigation
 
 If deployment looks wrong:
 

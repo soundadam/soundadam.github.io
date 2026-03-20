@@ -2,7 +2,7 @@
 
 Personal site repository.
 
-Current version: `0.2.7`
+Current version: `0.2.8`
 
 This repo hosts the static personal site for `soundadam.com` and `soundadam.github.io`.
 It is kept intentionally simple.
@@ -33,6 +33,7 @@ The site is statically exported for GitHub Pages.
 - `src/app/se/page.tsx`: speech enhancement page
 - `src/app/contact/page.tsx`: contact page
 - `src/components/gravity-playground.tsx`: homepage iframe wrapper for the transplanted gravity demo
+- `src/components/theme-toggle.tsx`: site-wide palette preference control
 - `public/playground/*`: transplanted gravity demo assets
 - `src/content/blog-posts.ts`: blog metadata
 - `CHANGELOG.md`: versioned update log

@@ -24,18 +24,20 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   font-family: "SF Mono", "Monaco", "Courier New", monospace;
   background: transparent;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 .claude-gravity-demo {
   font-family: "SF Mono", "Monaco", "Courier New", monospace;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100%;
   background:
     radial-gradient(circle at top, rgba(217, 119, 87, 0.18), transparent 34%),
     linear-gradient(180deg, #f5f0e8 0%, #efe6da 100%);
@@ -60,11 +62,59 @@ body {
   user-select: none;
   width: 100%;
   height: 100%;
+  min-height: 100%;
+}
+
+.demo-field-controls {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 20;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(48, 36, 30, 0.08);
+  border-radius: 999px;
+  background: rgba(250, 249, 245, 0.62);
+  backdrop-filter: blur(8px);
+  opacity: 0.24;
+  transition: opacity 180ms ease, background-color 180ms ease;
+}
+
+.claude-gravity-demo:hover .demo-field-controls,
+.demo-field-controls:focus-within {
+  opacity: 0.88;
+}
+
+.demo-field-button {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(30, 30, 30, 0.72);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1;
+  padding: 8px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.demo-field-button:hover {
+  background: rgba(255, 255, 255, 0.64);
+  color: rgba(30, 30, 30, 0.92);
+}
+
+.demo-field-button.is-active {
+  background: rgba(217, 119, 87, 0.16);
+  color: rgba(30, 30, 30, 0.96);
 }
 
 .demo-empty-state {
   position: absolute;
-  top: 18px;
+  top: 16px;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -95,12 +145,22 @@ body {
 
 @media (max-width: 800px) {
   .claude-gravity-demo__canvas-container {
-    min-height: 320px;
+    min-height: 100%;
+  }
+
+  .demo-field-controls {
+    left: 12px;
+    bottom: 12px;
+    opacity: 0.8;
+  }
+
+  .demo-empty-state {
+    top: 14px;
   }
 }
 
 @media (min-width: 800px) {
   .claude-gravity-demo__canvas-container {
-    min-height: 420px;
+    min-height: 100%;
   }
 }

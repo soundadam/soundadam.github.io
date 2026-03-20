@@ -15,6 +15,20 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
+## 0.2.8 - 2026-03-20T13:15:00+08:00 - in progress
+
+- Status:
+  - the homepage now has a site-wide palette preference instead of widget-local color changes
+  - the gravity layer now supports mouse-nearby pull and push fields through a subtle lower-left control
+  - desktop and mobile sizing have been reconciled so the bottom layer reads shallow on phones and broader on large screens
+- Implemented in this version so far:
+  - added `sand`, `mist`, and `night` themes with `localStorage` persistence and a pre-hydration boot script
+  - added a shared header theme toggle so the entire page palette changes consistently across routes
+  - merged responsive homepage spacing, CTA stacking, and earlier two-column entry cards
+  - updated the gravity iframe shell to blend better with page edges on larger screens
+  - added local attract / repel controls to the transplanted physics demo without promoting it into a primary feature
+  - removed stale pre-transplant emoji pool CSS so future debugging reflects the real active implementation
+
 ## 0.2.7 - 2026-03-20T12:28:00+08:00 - in progress
 
 - Status:

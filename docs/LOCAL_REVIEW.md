@@ -36,6 +36,8 @@ Review these routes explicitly:
 - whether the homepage feels restrained instead of decorative
 - whether the transplanted gravity playground feels like a side detail rather than the main content
 - whether the iframe playground loads cleanly on desktop and mobile
+- whether changing theme updates the whole page palette, not just the toggle itself
+- whether the gravity layer feels appropriately shallow on phones and broader on desktop
 - mobile navigation visibility
 - whether personal content is mostly confined to `/about`
 - mobile layout behavior

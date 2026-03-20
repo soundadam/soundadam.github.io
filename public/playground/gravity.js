@@ -14,6 +14,7 @@ class EmojiPhysicsDemo {
     this.world = null;
     this.emojis = [];
     this.mouse = { x: 0, y: 0 };
+    this.isPointerInside = false;
     this.maxEmojis = 500;
     this.isMouseDown = false;
     this.spawnInterval = null;
@@ -22,11 +23,15 @@ class EmojiPhysicsDemo {
     this.emoji = this.emojiChars[this.emojiIndex];
     this.gravityY = -10;
     this.gravityX = 2;
+    this.fieldMode = "off";
+    this.fieldRadius = 4.75;
+    this.fieldStrength = 22;
     this.emptyStateVisible = true;
     this.isInitialized = false;
     this.animationId = null;
     this.emojiTypes = {};
     this.emojiTypeOrder = [];
+    this.fieldButtons = [];
     this.init();
   }
 
@@ -78,9 +83,23 @@ class EmojiPhysicsDemo {
 
     this.setupEmojiTextures();
     this.setupEmoji(this.emoji);
+    this.setupFieldControls();
     this.setupEventListeners();
     this.animate();
     this.isInitialized = true;
+  }
+
+  setupFieldControls() {
+    this.fieldButtons = Array.from(document.querySelectorAll("[data-field-mode]"));
+
+    this.fieldButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.fieldMode = button.dataset.fieldMode ?? "off";
+        this.fieldButtons.forEach((candidate) => {
+          candidate.classList.toggle("is-active", candidate === button);
+        });
+      });
+    });
   }
 
   waitForVisibility() {
@@ -324,6 +343,35 @@ class EmojiPhysicsDemo {
     });
   }
 
+  applyPointerField() {
+    if (!this.isPointerInside || this.fieldMode === "off") {
+      return;
+    }
+
+    const sign = this.fieldMode === "attract" ? 1 : -1;
+
+    for (const emojiObj of this.emojis) {
+      const dx = this.mouse.x - emojiObj.body.position.x;
+      const dy = this.mouse.y - emojiObj.body.position.y;
+      const distanceSq = dx * dx + dy * dy;
+
+      if (distanceSq < 0.08 || distanceSq > this.fieldRadius * this.fieldRadius) {
+        continue;
+      }
+
+      const distance = Math.sqrt(distanceSq);
+      const falloff = 1 - distance / this.fieldRadius;
+      const strength = falloff * this.fieldStrength * emojiObj.body.mass * sign;
+      const fx = (dx / distance) * strength;
+      const fy = (dy / distance) * strength;
+
+      emojiObj.body.applyForce(
+        new CANNON.Vec3(fx, fy, 0),
+        emojiObj.body.position,
+      );
+    }
+  }
+
   setupEventListeners() {
     const canvas = this.renderer.domElement;
 
@@ -332,6 +380,7 @@ class EmojiPhysicsDemo {
       const worldPos = this.screenToWorld(clientX, clientY);
       this.mouse.x = worldPos.x;
       this.mouse.y = worldPos.y;
+      this.isPointerInside = true;
       this.isMouseDown = true;
       this.createEmojiFountain(worldPos.x, worldPos.y);
       this.startContinuousSpawning();
@@ -341,10 +390,12 @@ class EmojiPhysicsDemo {
       const worldPos = this.screenToWorld(clientX, clientY);
       this.mouse.x = worldPos.x;
       this.mouse.y = worldPos.y;
+      this.isPointerInside = true;
     };
 
     const end = () => {
       this.isMouseDown = false;
+      this.isPointerInside = false;
       this.stopContinuousSpawning();
     };
 
@@ -377,6 +428,7 @@ class EmojiPhysicsDemo {
 
   animate() {
     this.animationId = requestAnimationFrame(this.animate.bind(this));
+    this.applyPointerField();
     this.world.step(1 / 60, 0, 6);
 
     for (const emoji of this.emojiTypeOrder) {
