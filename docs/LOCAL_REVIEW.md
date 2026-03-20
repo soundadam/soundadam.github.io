@@ -1,8 +1,8 @@
 # Local Review
 
-- updated at: `2026-03-20T13:56:17+08:00`
-- base commit: `dc61a26`
-- target version: `0.3.4`
+- updated at: `2026-03-20T14:05:17+08:00`
+- base commit: `50c79e7`
+- target version: `0.3.5`
 
 ## Purpose
 
@@ -51,6 +51,8 @@ Review these routes explicitly:
 - whether `cat routes` and `cat about` read clearly and do not flood the page
 - whether the prompt now reads more like a real shell
 - whether `cd /` and `cat /` return permission-style feedback
+- whether the terminal now feels closer to the local Ubuntu profile in font and contrast
+- whether command recall with arrow keys works
 - whether the gravity layer feels appropriately shallow on phones and broader on desktop
 - mobile navigation visibility
 - whether personal content is mostly confined to `/about`

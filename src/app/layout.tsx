@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Manrope, Space_Grotesk, Ubuntu_Mono } from "next/font/google";
 import Script from "next/script";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
@@ -14,6 +14,12 @@ const display = Space_Grotesk({
 const body = Manrope({
   variable: "--font-body",
   subsets: ["latin"],
+});
+
+const mono = Ubuntu_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -42,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} h-full antialiased`}
+      className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
       data-theme={DEFAULT_THEME}
       style={{ colorScheme: "light" }}
       suppressHydrationWarning

@@ -52,13 +52,13 @@ That demo work currently lives in `setrain` worktrees, not here.
 
 ## Last Theme Pass
 
-- updated at: `2026-03-20T13:56:17+08:00`
-- base commit before this pass: `dc61a26`
-- target version: `0.3.4`
+- updated at: `2026-03-20T14:05:17+08:00`
+- base commit before this pass: `50c79e7`
+- target version: `0.3.5`
 - active objective:
-  - move the footer prompt closer to a recognizable shell style
-  - ensure the terminal itself stays fixed in height and scrolls internally
-  - introduce permission-style responses for restricted root access
+  - align the footer terminal more closely with the local Ubuntu Terminal profile
+  - improve terminal typography and interaction fidelity without turning it into a real PTY shell
+  - keep the terminal bounded and maintainable
 
 ## Important Files
 
@@ -194,6 +194,7 @@ If the homepage looks wrong:
 11. verify footer terminal commands navigate correctly and the session transcript survives page transitions
 12. verify footer terminal stays bounded in height and does not keep stretching the page after repeated commands
 13. verify `cd /`, `open /`, and `cat /` respond with permission-style errors instead of changing route
+14. verify up/down arrow history works and the terminal still scrolls internally
 
 If deployment looks wrong:
 

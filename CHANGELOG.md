@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.3.4 - 2026-03-20T13:56:17+08:00 - in progress
+## 0.3.5 - 2026-03-20T14:05:17+08:00 - in progress
+
+- Status:
+  - footer terminal is now being aligned more directly with the local macOS Terminal Ubuntu profile
+  - monospace font, contrast, prompt feel, and shell interaction depth are being tightened
+- Implemented in this version so far:
+  - switched footer terminal styling toward the extracted Ubuntu profile background and text contrast
+  - updated terminal font stack to prefer Ubuntu Mono
+  - added command recall on up/down arrows
+  - kept fixed-height scrolling behavior while making the terminal body feel less like a generic card
+
+## 0.3.4 - 2026-03-20T13:56:17+08:00 - `50c79e7`
 
 - Status:
   - footer terminal is being tightened toward a more recognizable shell prompt and window behavior

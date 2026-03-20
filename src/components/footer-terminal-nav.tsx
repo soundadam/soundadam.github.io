@@ -110,7 +110,9 @@ export function FooterTerminalNav() {
   const router = useRouter();
   const pathname = usePathname();
   const bodyRef = useRef<HTMLDivElement>(null);
+  const commandHistoryRef = useRef<string[]>([]);
   const [input, setInput] = useState("");
+  const [historyIndex, setHistoryIndex] = useState<number | null>(null);
   const [history, setHistory] = useState<HistoryLine[]>(() => {
     if (typeof window === "undefined") {
       return initialHistory(pathname);
@@ -186,6 +188,12 @@ export function FooterTerminalNav() {
 
     const [command, ...rest] = value.split(/\s+/);
     const arg = rest.join(" ");
+
+    commandHistoryRef.current = [
+      ...commandHistoryRef.current.filter((item) => item !== value),
+      value,
+    ].slice(-24);
+    setHistoryIndex(null);
 
     appendLines([{ kind: "prompt", text: `${promptLabel} ${value}` }]);
 
@@ -333,6 +341,36 @@ export function FooterTerminalNav() {
             spellCheck={false}
             value={input}
             onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => {
+              const entries = commandHistoryRef.current;
+              if (entries.length === 0) {
+                return;
+              }
+
+              if (event.key === "ArrowUp") {
+                event.preventDefault();
+                const nextIndex =
+                  historyIndex === null ? entries.length - 1 : Math.max(0, historyIndex - 1);
+                setHistoryIndex(nextIndex);
+                setInput(entries[nextIndex]);
+              }
+
+              if (event.key === "ArrowDown") {
+                event.preventDefault();
+                if (historyIndex === null) {
+                  return;
+                }
+
+                const nextIndex = historyIndex + 1;
+                if (nextIndex >= entries.length) {
+                  setHistoryIndex(null);
+                  setInput("");
+                } else {
+                  setHistoryIndex(nextIndex);
+                  setInput(entries[nextIndex]);
+                }
+              }
+            }}
             className="footer-terminal-input"
             placeholder="ls"
           />

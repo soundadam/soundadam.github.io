@@ -1,8 +1,8 @@
 # Theme System
 
-- updated at: `2026-03-20T13:56:17+08:00`
-- base commit: `dc61a26`
-- target version: `0.3.4`
+- updated at: `2026-03-20T14:05:17+08:00`
+- base commit: `50c79e7`
+- target version: `0.3.5`
 
 ## Purpose
 
@@ -133,6 +133,13 @@ If commands break, inspect:
 1. `src/components/footer-terminal-nav.tsx`
 2. `src/components/site-footer.tsx`
 3. `src/app/globals.css`
+
+The current styling direction is informed by the local macOS Terminal Ubuntu profile:
+
+- font: `UbuntuMonoNFM 15`
+- background: roughly `#400f30`
+- text: roughly `#f2f2ef`
+- selection: roughly `#723862`
 
 ## Maintenance Notes
 
