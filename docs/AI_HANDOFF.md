@@ -22,6 +22,12 @@ Current policy:
 - fallback / GitHub Pages address: `soundadam.github.io`
 - current app type: static Next.js homepage
 - deployment mode: GitHub Pages static export
+- current public routes:
+  - `/`
+  - `/about`
+  - `/blog`
+  - `/se`
+  - `/contact`
 
 This repo is the calm public front door.
 
@@ -45,12 +51,24 @@ That demo work currently lives in `setrain` worktrees, not here.
 
 - `src/app/page.tsx`
   - homepage content and structure
+- `src/app/about/page.tsx`
+  - curated public bio derived from safe resume facts
+- `src/app/blog/page.tsx`
+  - static writing layer
+- `src/app/blog/*/page.tsx`
+  - published static notes
+- `src/app/se/page.tsx`
+  - static speech-enhancement project framing
+- `src/app/contact/page.tsx`
+  - contact surface
 - `src/app/layout.tsx`
   - global app layout
   - Google font setup
   - Bootstrap CSS import
 - `src/app/globals.css`
   - custom design tokens and global page styling
+- `src/content/blog-posts.ts`
+  - static post metadata used by the blog index
 - `public/CNAME`
   - custom domain record for GitHub Pages
 - `.github/workflows/deploy-pages.yml`
@@ -99,6 +117,8 @@ Do not collapse the page into generic Bootstrap blocks just because Bootstrap is
 - Bootstrap must remain available because the user wants easier migration to their own server
 - future demo integration should be linked clearly but not embedded as a half-working live app here
 - rollback must be Git-based, not manual file surgery
+- resume-derived content must be manually curated before publication
+- raw transcript pages, identifiers, phone number, and private school records must stay out of the public site
 
 ## Rollback Procedure
 
@@ -131,6 +151,7 @@ If the homepage looks wrong:
 4. verify `public/CNAME` still matches the intended domain
 5. verify GitHub Pages workflow still uploads the `out/` directory
 6. if behavior changed recently, compare against the last known-good commit from `CHANGELOG.md`
+7. on mobile, verify the header nav is still visible and wrapping instead of disappearing
 
 If deployment looks wrong:
 

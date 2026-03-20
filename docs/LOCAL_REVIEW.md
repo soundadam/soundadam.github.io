@@ -17,10 +17,24 @@ Open:
 http://localhost:3000
 ```
 
+Review these routes explicitly:
+
+```text
+/
+/about
+/blog
+/blog/static-vs-live
+/blog/research-threads
+/blog/worktree-notes
+/se
+/contact
+```
+
 ## Review Focus
 
 - typography scale and spacing rhythm
 - header balance and hero composition
+- mobile navigation visibility
 - `setrain` entry prominence
 - mobile layout behavior
 - whether the page feels sparse in a deliberate way, not unfinished

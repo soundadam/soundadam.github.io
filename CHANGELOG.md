@@ -15,22 +15,29 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.1.5 - 2026-03-20T00:00:00+08:00 - in progress
+## 0.2.0 - 2026-03-20T10:53:59+08:00 - in progress
 
 - Status:
   - repository is now the primary working surface
+  - app expansion now includes `about`, `blog`, `se`, and `contact`
   - `setrain` should stay unchanged except for micro-tweaks to the legacy `app/se-demo` / Gradio path
   - Bootstrap has been adopted as a baseline dependency for portability to your own server
   - Git should be the only rollback mechanism
 - Intent:
   - keep the homepage repo independently operable
+  - keep `soundadam.com` and `soundadam.github.io` static-first and stable
+  - keep live speech enhancement on `se.soundadam.com`
   - make future debugging easier for another AI or human collaborator
 - Planned records in this version:
-  - add explicit version tracking
-  - add retroactive changelog entries for previous work
-  - add a local review runbook
-  - add an AI handoff / debug brief
-  - document Git-based rollback workflow
+  - keep static public content easy to debug and easy to mirror
+- Implemented in this version so far:
+  - expanded the public IA to `about`, `blog`, `se`, and `contact`
+  - rewrote the homepage around those four entry points
+  - added content architecture documentation for `soundadam.com`, `soundadam.github.io`, and `se.soundadam.com`
+  - documented privacy rules for resume-derived content
+  - kept all rollback guidance explicitly Git-based
+  - added published static blog posts instead of leaving the writing section as a placeholder
+  - fixed mobile navigation visibility in the shared header
 
 ## 0.1.4 - 2026-03-19T22:53:45+08:00 - `63fc7d4`
 
