@@ -17,6 +17,12 @@ const entries = [
     copy: "Static writing that should remain stable and easy to access.",
   },
   {
+    href: "/term",
+    label: "Term",
+    title: "Sandboxed terminal beta.",
+    copy: "A dedicated xterm.js route for the containerized Codex path on Ubuntu.",
+  },
+  {
     href: "/se",
     label: "SE",
     title: "Speech enhancement project page.",
@@ -54,9 +60,9 @@ export default function Home() {
           </Link>
           <Link
             className="site-button site-button-secondary w-full sm:w-auto"
-            href="/about"
+            href="/term"
           >
-            About me
+            Open term beta
           </Link>
         </div>
       </section>

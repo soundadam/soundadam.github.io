@@ -21,9 +21,10 @@ Current policy:
 - domain target: `soundadam.com`
 - fallback / GitHub Pages address: `soundadam.github.io`
 - current app type: static Next.js homepage
-- deployment mode: GitHub Pages static export
+- deployment mode: GitHub Pages static export for the public site
 - current public routes:
   - `/`
+  - `/term`
   - `/about`
   - `/blog`
   - `/blog/static-vs-live`
@@ -34,12 +35,9 @@ Current policy:
 
 This repo is the calm public front door.
 
-The future speech-enhancement demo is expected to live separately under:
+`/term` is the only route intended to host a real `xterm.js` surface.
 
-- `https://se.soundadam.com`
-- same-origin API pattern: `/api/*`
-
-That demo work currently lives in `setrain` worktrees, not here.
+The footer terminal is intentionally a bounded pseudo-shell for navigation only.
 
 ## Stack
 
@@ -48,65 +46,60 @@ That demo work currently lives in `setrain` worktrees, not here.
 - TypeScript
 - Tailwind CSS v4
 - Bootstrap 5.3 baseline
+- `@xterm/xterm`
+- `@xterm/addon-fit`
 - static export enabled in `next.config.ts`
 
-## Last Theme Pass
+## Last Terminal Beta Pass
 
-- updated at: `2026-03-20T14:05:17+08:00`
-- base commit before this pass: `50c79e7`
-- target version: `0.3.5`
+- updated at: `2026-03-20T14:47:30+08:00`
+- base commit before this pass: `c9dfe39`
+- target version: `0.3.6`
 - active objective:
-  - align the footer terminal more closely with the local Ubuntu Terminal profile
-  - improve terminal typography and interaction fidelity without turning it into a real PTY shell
-  - keep the terminal bounded and maintainable
+  - add a dedicated `/term` page for the real terminal beta path
+  - keep the footer shell fake, constrained, and navigational
+  - prepare for Ubuntu-hosted `xterm.js -> WebSocket -> PTY -> containerized Codex`
+  - avoid connecting the site to the host login shell directly
 
 ## Important Files
 
 - `src/app/page.tsx`
-  - homepage content and structure
+  - homepage content and entry cards
+- `src/app/term/page.tsx`
+  - isolated beta route for the real terminal path
 - `src/app/about/page.tsx`
   - curated public bio derived from safe resume facts
 - `src/app/blog/page.tsx`
   - static writing layer
-- `src/app/blog/*/page.tsx`
-  - published static notes
 - `src/app/se/page.tsx`
   - static speech-enhancement project framing
 - `src/app/contact/page.tsx`
   - contact surface
 - `src/app/layout.tsx`
   - global app layout
-  - Google font setup
-  - Bootstrap CSS import
+  - Bootstrap import
+  - xterm global stylesheet import
 - `src/app/globals.css`
-  - custom design tokens and global page styling
-  - shared semantic classes for buttons and article surfaces
-- `src/components/theme-toggle.tsx`
-  - client-side site-wide theme preference control
+  - custom design tokens
+  - footer shell styling
+  - term beta styling
+- `src/components/site-header.tsx`
+  - top navigation now includes `Term`
 - `src/components/footer-terminal-nav.tsx`
   - footer pseudo-terminal for route navigation
-- `src/lib/themes.ts`
-  - theme registry for labels and light/dark scheme metadata
+  - now understands `term` in `ls`, `cd`, `open`, and `cat`
+- `src/components/term-beta-panel.tsx`
+  - client-only `xterm.js` surface and websocket attachment logic
 - `src/components/gravity-playground.tsx`
   - homepage wrapper for the transplanted gravity demo
-- `src/content/blog-posts.ts`
-  - static post metadata used by the blog index
-- `public/playground/gravity.html`
-  - self-contained embedded demo entry point
-- `public/playground/gravity.css`
-  - transplanted demo styling and lower-left field controls
-  - theme-aware demo shell variables
-- `public/playground/gravity.js`
-  - transplanted physics and rendering logic with mouse-nearby pull / push fields
-- `docs/THEME_SYSTEM.md`
-  - semantic theme-token reference
-  - maintenance notes for future palette additions
-- `public/CNAME`
-  - custom domain record for GitHub Pages
-- `.github/workflows/deploy-pages.yml`
-  - Pages deployment workflow
+- `docs/TERM_BETA.md`
+  - server-facing notes for the isolated terminal beta route
+- `docs/LOCAL_REVIEW.md`
+  - route-by-route local review checklist
+- `docs/PARALLEL_TRACKS.md`
+  - active worktree split
 - `CHANGELOG.md`
-  - single file for retroactive and forward timestamped changelog
+  - single file for timestamped changelog and rollback references
 
 ## Local Review
 
@@ -130,31 +123,17 @@ pnpm lint
 pnpm build
 ```
 
-## Design Direction
+## Safety Boundary
 
-Current visual intent:
+Do not connect `/term` to the host shell on macOS or Ubuntu.
 
-- sparse rather than content-heavy
-- simple and calm rather than decorative
-- homepage as a quiet entry point, not a self-promotional landing page
-- personal details concentrated on `/about`
-- `se` kept visible, but not at the cost of clarity
-- the playground should feel like an optional side detail, not the primary narrative
-- when possible, prefer stronger transplanted interactions over weaker hand-made imitations
-- theme preference should affect the overall site palette, not a single widget
-- the safest way to scale themes is semantic tokens first, not page-by-page color edits
+Preferred backend shape:
 
-Do not collapse the page into generic Bootstrap blocks just because Bootstrap is present. Bootstrap is the portability baseline, not the design language.
-
-## Known Constraints
-
-- the homepage should remain relatively spare for now
-- links and sections can expand later, but the current intent is a quiet front door
-- Bootstrap must remain available because the user wants easier migration to their own server
-- future demo integration should be linked clearly but not embedded as a half-working live app here
-- rollback must be Git-based, not manual file surgery
-- resume-derived content must be manually curated before publication
-- raw transcript pages, identifiers, phone number, and private school records must stay out of the public site
+- `xterm.js -> WebSocket -> PTY -> containerized Codex`
+- low-privilege container user
+- explicit workspace mount only
+- no host home directory, SSH keys, or Docker socket
+- retain session logging server-side
 
 ## Rollback Procedure
 
@@ -182,34 +161,11 @@ Avoid forceful history rewriting unless explicitly required.
 If the homepage looks wrong:
 
 1. verify `bootstrap/dist/css/bootstrap.min.css` is still imported in `src/app/layout.tsx`
-2. verify custom tokens in `src/app/globals.css` still override the baseline effectively
-3. run `pnpm build` and check for app-router or CSS issues
-4. verify `public/CNAME` still matches the intended domain
-5. verify GitHub Pages workflow still uploads the `out/` directory
-6. if behavior changed recently, compare against the last known-good commit from `CHANGELOG.md`
-7. on mobile, verify the header nav is still visible and wrapping instead of disappearing
-8. verify `/playground/gravity.html` loads and the iframe embed on `/` still works
-9. verify theme selection persists and updates the page palette before and after navigation
-10. verify both dark themes update article panels, secondary buttons, and the iframe shell consistently instead of leaving light surfaces behind
-11. verify footer terminal commands navigate correctly and the session transcript survives page transitions
-12. verify footer terminal stays bounded in height and does not keep stretching the page after repeated commands
-13. verify `cd /`, `open /`, and `cat /` respond with permission-style errors instead of changing route
-14. verify up/down arrow history works and the terminal still scrolls internally
-
-If deployment looks wrong:
-
-1. verify `next.config.ts` still has `output: "export"`
-2. verify GitHub Pages is configured to deploy from GitHub Actions
-3. verify DNS for `soundadam.com`
-4. verify the latest workflow run succeeded
-
-## Related External Context
-
-There is parallel work in `setrain` for:
-
-- `frontend-redesign-shell`
-- `frontend-redesign-live-demo`
-- `frontend-redesign-gallery`
-- `frontend-redesign-deploy`
-
-That work is relevant context, but should not automatically pull this repo back into `setrain`-style development.
+2. verify `@xterm/xterm/css/xterm.css` is still imported in `src/app/layout.tsx`
+3. verify custom tokens in `src/app/globals.css` still override the baseline effectively
+4. run `pnpm build` and check for app-router or CSS issues
+5. verify theme selection persists and updates both footer shell and `/term` surface legibly
+6. verify `/term` loads even when no websocket backend is present
+7. verify the footer shell stays bounded in height and does not turn into a real terminal
+8. verify `cd /`, `open /`, and `cat /` respond with permission-style errors instead of changing route
+9. compare against the latest known-good commit in `CHANGELOG.md` before rolling back

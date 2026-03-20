@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Space_Grotesk, Ubuntu_Mono } from "next/font/google";
 import Script from "next/script";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "@xterm/xterm/css/xterm.css";
 import "./globals.css";
 
 import { DEFAULT_THEME, THEME_META } from "@/lib/themes";

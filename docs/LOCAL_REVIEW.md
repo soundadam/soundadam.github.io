@@ -1,8 +1,8 @@
 # Local Review
 
-- updated at: `2026-03-20T14:05:17+08:00`
-- base commit: `50c79e7`
-- target version: `0.3.5`
+- updated at: `2026-03-20T14:47:30+08:00`
+- base commit: `c9dfe39`
+- target version: `0.3.6`
 
 ## Purpose
 
@@ -25,6 +25,7 @@ Review these routes explicitly:
 
 ```text
 /
+/term
 /about
 /blog
 /blog/static-vs-live
@@ -36,28 +37,18 @@ Review these routes explicitly:
 
 ## Review Focus
 
-- typography scale and spacing rhythm
-- whether the homepage feels restrained instead of decorative
-- whether the transplanted gravity playground feels like a side detail rather than the main content
-- whether the iframe playground loads cleanly on desktop and mobile
-- whether changing theme updates the whole page palette, not just the toggle itself
-- whether the `ubuntu` theme feels warmer and more terminal-like than the previous `mist` direction
-- whether `night` now changes article panels, buttons, and embedded surfaces consistently
-- whether the header/footer chrome feels intentional rather than decorative
-- whether the theme switcher reads as part of the site chrome instead of a generic pill
-- whether the footer terminal feels usable rather than gimmicky
-- whether `ls`, `pwd`, `cd about`, `cd blog`, `open se`, and `clear` behave reliably
-- whether the footer terminal now stays inside a fixed window with internal scroll
-- whether `cat routes` and `cat about` read clearly and do not flood the page
-- whether the prompt now reads more like a real shell
-- whether `cd /` and `cat /` return permission-style feedback
-- whether the terminal now feels closer to the local Ubuntu profile in font and contrast
-- whether command recall with arrow keys works
-- whether the gravity layer feels appropriately shallow on phones and broader on desktop
-- mobile navigation visibility
-- whether personal content is mostly confined to `/about`
-- mobile layout behavior
-- whether the page feels sparse in a deliberate way, not unfinished
+- whether the top navigation now exposes `Term` alongside the stable site routes
+- whether `/term` feels clearly separated from the footer pseudo-shell instead of blending into it
+- whether the xterm surface loads cleanly without a backend and reports detachment clearly
+- whether the endpoint field defaults to same-origin `/api/term/socket`
+- whether the term page still reads well on mobile and desktop
+- whether the footer terminal still stays fixed-height with internal scroll
+- whether the footer terminal colors feel closer to a real terminal window and less like stacked colored cards
+- whether `ls`, `cd term`, `open term`, `cat term`, and `cat routes` behave reliably in the footer shell
+- whether `cd /` and `cat /` still return permission-style feedback
+- whether the `ubuntu` theme continues to feel warmer and more terminal-like than the other palettes
+- whether `night` still updates article surfaces, buttons, and embedded layers consistently
+- whether the homepage stays sparse instead of becoming a feature-heavy landing page
 
 ## Validation
 
@@ -68,11 +59,7 @@ pnpm build
 
 ## Notes
 
-- Bootstrap is present as a portability baseline.
-- The current look is still driven by custom CSS tokens and page-specific composition.
+- Bootstrap remains a portability baseline.
+- `/term` is the only page intended to host a real `xterm.js` surface.
+- The footer terminal remains a bounded pseudo-shell for navigation only.
 - If review finds a regression, use Git commits in `CHANGELOG.md` to move backward deliberately.
-- If you want a temporary alternate local port:
-
-```bash
-pnpm dev -- --port 3001
-```

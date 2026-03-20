@@ -14,6 +14,7 @@ const MAX_HISTORY_LINES = 56;
 
 const routeMap = {
   home: "/",
+  term: "/term",
   about: "/about",
   blog: "/blog",
   se: "/se",
@@ -32,6 +33,11 @@ const routeSummaries: Record<keyof typeof routeMap, string[]> = {
     "route: /",
     "role: sparse front door",
     "contains: entry cards, gravity layer, top-level links",
+  ],
+  term: [
+    "route: /term",
+    "role: isolated real-terminal beta route",
+    "contains: xterm.js surface, websocket target, sandbox notes",
   ],
   about: [
     "route: /about",
@@ -65,10 +71,10 @@ function helpLines() {
     "ls",
     "ls <target>",
     "pwd",
-    "cd home|about|blog|se|contact|..",
-    "open home|about|blog|se|contact",
+    "cd home|term|about|blog|se|contact|..",
+    "open home|term|about|blog|se|contact",
     "cat routes",
-    "cat home|about|blog|se|contact",
+    "cat home|term|about|blog|se|contact",
     "help",
     "clear",
   ];
@@ -171,9 +177,7 @@ export function FooterTerminalNav() {
 
   function navigateTo(target: keyof typeof routeMap) {
     const href = routeMap[target];
-    appendLines([
-      { kind: "system", text: `navigating to ${href}` },
-    ]);
+    appendLines([{ kind: "system", text: `navigating to ${href}` }]);
     window.sessionStorage.setItem(LAST_PATH_KEY, href);
     startTransition(() => {
       router.push(href);
@@ -273,9 +277,7 @@ export function FooterTerminalNav() {
 
     if (command === "cd" || command === "open") {
       if (!arg) {
-        appendLines([
-          { kind: "output", text: `usage: ${command} <route>` },
-        ]);
+        appendLines([{ kind: "output", text: `usage: ${command} <route>` }]);
         return;
       }
 
@@ -291,15 +293,11 @@ export function FooterTerminalNav() {
         return;
       }
 
-      appendLines([
-        { kind: "output", text: `unknown route: ${arg}` },
-      ]);
+      appendLines([{ kind: "output", text: `unknown route: ${arg}` }]);
       return;
     }
 
-    appendLines([
-      { kind: "output", text: `command not found: ${command}` },
-    ]);
+    appendLines([{ kind: "output", text: `command not found: ${command}` }]);
   }
 
   return (
@@ -323,6 +321,7 @@ export function FooterTerminalNav() {
             {line.text}
           </p>
         ))}
+
         <form
           className="footer-terminal-form"
           onSubmit={(event) => {
@@ -331,28 +330,23 @@ export function FooterTerminalNav() {
             setInput("");
           }}
         >
-          <label className="footer-terminal-prompt" htmlFor="footer-terminal-input">
-            {promptLabel}
-          </label>
+          <span className="footer-terminal-prompt">{promptLabel}</span>
           <input
-            id="footer-terminal-input"
-            type="text"
-            autoComplete="off"
-            spellCheck={false}
+            className="footer-terminal-input"
             value={input}
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={(event) => {
-              const entries = commandHistoryRef.current;
-              if (entries.length === 0) {
-                return;
-              }
-
               if (event.key === "ArrowUp") {
                 event.preventDefault();
                 const nextIndex =
-                  historyIndex === null ? entries.length - 1 : Math.max(0, historyIndex - 1);
-                setHistoryIndex(nextIndex);
-                setInput(entries[nextIndex]);
+                  historyIndex === null
+                    ? commandHistoryRef.current.length - 1
+                    : Math.max(historyIndex - 1, 0);
+                if (nextIndex >= 0) {
+                  setHistoryIndex(nextIndex);
+                  setInput(commandHistoryRef.current[nextIndex] ?? "");
+                }
+                return;
               }
 
               if (event.key === "ArrowDown") {
@@ -362,17 +356,20 @@ export function FooterTerminalNav() {
                 }
 
                 const nextIndex = historyIndex + 1;
-                if (nextIndex >= entries.length) {
+                if (nextIndex >= commandHistoryRef.current.length) {
                   setHistoryIndex(null);
                   setInput("");
-                } else {
-                  setHistoryIndex(nextIndex);
-                  setInput(entries[nextIndex]);
+                  return;
                 }
+
+                setHistoryIndex(nextIndex);
+                setInput(commandHistoryRef.current[nextIndex] ?? "");
               }
             }}
-            className="footer-terminal-input"
-            placeholder="ls"
+            autoComplete="off"
+            spellCheck={false}
+            placeholder="ls · cd term · cat routes"
+            aria-label="Terminal command"
           />
         </form>
       </div>

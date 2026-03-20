@@ -15,6 +15,19 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
+## 0.3.6 - 2026-03-20T14:47:30+08:00 - in progress
+
+- Status:
+  - the site now has a dedicated `/term` beta route for the real terminal path
+  - the footer shell remains pseudo, bounded, and focused on site navigation
+  - the terminal beta path is being prepared for an Ubuntu-hosted `xterm.js -> WebSocket -> PTY -> containerized Codex` backend
+- Implemented in this version so far:
+  - added `@xterm/xterm` and `@xterm/addon-fit`
+  - added `/term` and exposed it in the top navigation and homepage entry surface
+  - added a client-side xterm beta panel that targets same-origin `/api/term/socket`
+  - extended the footer pseudo-shell so `term` appears in `ls`, `cd`, `open`, and `cat`
+  - added `docs/TERM_BETA.md` plus refreshed AI handoff, review, and worktree notes for the new route
+
 ## 0.3.5 - 2026-03-20T14:05:17+08:00 - in progress
 
 - Status:

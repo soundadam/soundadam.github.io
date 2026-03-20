@@ -8,19 +8,18 @@ This note records the current multi-worktree split for `soundadam.github.io`.
 
 | Worktree | Branch | Ownership | Current focus |
 | --- | --- | --- | --- |
-| `.worktrees/fields` | `playground-fields` | playground physics interactions | mouse-nearby attract / repel field on top of the transplanted gravity demo |
-| `.worktrees/theme` | `site-theme` | global theme system | whole-site palette switching, not just widget-level color changes |
-| `.worktrees/responsive` | `site-responsive` | responsive adaptation | homepage spacing, gravity layer sizing, mobile / desktop layout behavior |
+| `.worktrees/terminal-polish` | `terminal-polish` | footer shell visual polish | align footer terminal more closely with the local Ubuntu Terminal profile |
+| `.worktrees/term-beta` | `term-beta` | isolated real-terminal beta | `/term` route with `xterm.js`, same-origin websocket target, and sandbox-first backend assumptions |
 
 ## Main Branch Policy
 
 - `main` stays usable and reviewable.
-- Parallel experiments should land in worktrees first.
+- Parallel experiments should land in worktrees first when the surface is risky or visually unstable.
 - Reconcile branches deliberately after local review.
 - Use Git history for rollback, not manual file resets.
 
 ## Deferred Ideas
 
-- engine switching in the lower-left floating control, if that control becomes part of the site chrome
-- more advanced fields such as vortex, point gravity, and magnetic-style steering
-- stronger visual integration between the gravity layer and the site background
+- server-side websocket bridge for `xterm.js -> PTY -> containerized Codex`
+- stronger footer-shell polish without turning the footer into a real terminal
+- theme-token cleanup if additional terminal-like routes are added later

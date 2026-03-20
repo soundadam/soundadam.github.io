@@ -4,9 +4,10 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/term", label: "Term" },
+  { href: "/se", label: "SE" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
-  { href: "/se", label: "SE" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -25,7 +26,7 @@ export function SiteHeader() {
               soundadam
             </p>
             <p className="font-mono text-[0.7rem] tracking-[0.12em] text-[var(--color-text-muted)] uppercase">
-              home / notes / se
+              home / term / notes / se
             </p>
           </div>
         </Link>
