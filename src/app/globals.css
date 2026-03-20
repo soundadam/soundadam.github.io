@@ -345,3 +345,111 @@ li {
 .gravity-shell-dots span:nth-child(3) {
   background: var(--color-dot-green);
 }
+
+.footer-terminal {
+  border: 1px solid var(--color-chrome-border);
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-chrome) 92%, transparent),
+      color-mix(in srgb, var(--color-panel) 82%, transparent)
+    );
+  box-shadow:
+    inset 0 1px 0 var(--color-chrome-highlight),
+    0 18px 40px rgba(var(--color-shadow-rgb), 0.14);
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+}
+
+.footer-terminal-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--color-chrome-border);
+  padding: 0.9rem 1rem 0.78rem;
+}
+
+.footer-terminal-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.footer-terminal-path {
+  margin-left: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+
+.footer-terminal-body {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.83rem;
+  line-height: 1.7;
+}
+
+.footer-terminal-line {
+  word-break: break-word;
+}
+
+.footer-terminal-line-prompt {
+  color: var(--color-text);
+}
+
+.footer-terminal-line-output {
+  color: var(--color-text-muted);
+}
+
+.footer-terminal-line-system {
+  color: var(--color-accent-strong);
+}
+
+.footer-terminal-form {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.2rem;
+}
+
+.footer-terminal-prompt {
+  flex: 0 0 auto;
+  color: var(--color-text);
+}
+
+.footer-terminal-input {
+  min-width: 0;
+  flex: 1 1 auto;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  outline: none;
+  caret-color: var(--color-accent-strong);
+}
+
+.footer-terminal-input::placeholder {
+  color: color-mix(in srgb, var(--color-text-muted) 82%, transparent);
+}
+
+@media (max-width: 640px) {
+  .footer-terminal-header {
+    gap: 0.55rem;
+  }
+
+  .footer-terminal-path {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .footer-terminal-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+}

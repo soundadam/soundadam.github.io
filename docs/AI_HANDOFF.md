@@ -52,13 +52,13 @@ That demo work currently lives in `setrain` worktrees, not here.
 
 ## Last Theme Pass
 
-- updated at: `2026-03-20T13:36:17+08:00`
-- base commit before this pass: `ccb687a`
-- target version: `0.3.1`
+- updated at: `2026-03-20T13:43:23+08:00`
+- base commit before this pass: `07c8dfb`
+- target version: `0.3.2`
 - active objective:
-  - carry the Ubuntu direction into shared chrome, not just page surfaces
-  - make header, footer, theme switcher, and gravity controls read more like one system
-  - preserve the restrained homepage tone while adding a more deliberate terminal-window texture
+  - extend the site chrome into a usable footer terminal
+  - keep route navigation playful but bounded and maintainable
+  - preserve terminal language without introducing a fake general-purpose shell
 
 ## Important Files
 
@@ -83,6 +83,8 @@ That demo work currently lives in `setrain` worktrees, not here.
   - shared semantic classes for buttons and article surfaces
 - `src/components/theme-toggle.tsx`
   - client-side site-wide theme preference control
+- `src/components/footer-terminal-nav.tsx`
+  - footer pseudo-terminal for route navigation
 - `src/lib/themes.ts`
   - theme registry for labels and light/dark scheme metadata
 - `src/components/gravity-playground.tsx`
@@ -189,6 +191,7 @@ If the homepage looks wrong:
 8. verify `/playground/gravity.html` loads and the iframe embed on `/` still works
 9. verify theme selection persists and updates the page palette before and after navigation
 10. verify both dark themes update article panels, secondary buttons, and the iframe shell consistently instead of leaving light surfaces behind
+11. verify footer terminal commands navigate correctly and the session transcript survives page transitions
 
 If deployment looks wrong:
 

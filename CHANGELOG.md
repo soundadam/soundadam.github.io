@@ -15,7 +15,17 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.3.1 - 2026-03-20T13:36:17+08:00 - in progress
+## 0.3.2 - 2026-03-20T13:43:23+08:00 - in progress
+
+- Status:
+  - footer navigation is moving into a terminal-style interaction surface instead of plain copy
+  - route switching can now happen through a controlled pseudo-shell at the bottom of every page
+- Implemented in this version so far:
+  - added a shared footer terminal that supports `ls`, `pwd`, `cd`, `open`, `help`, and `clear`
+  - made terminal history persist across in-site navigation via `sessionStorage`
+  - kept the terminal constrained to known site routes instead of pretending to be a full shell
+
+## 0.3.1 - 2026-03-20T13:36:17+08:00 - `07c8dfb`
 
 - Status:
   - the Ubuntu palette is now being carried through site chrome instead of only content surfaces

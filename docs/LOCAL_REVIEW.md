@@ -1,8 +1,8 @@
 # Local Review
 
-- updated at: `2026-03-20T13:36:17+08:00`
-- base commit: `ccb687a`
-- target version: `0.3.1`
+- updated at: `2026-03-20T13:43:23+08:00`
+- base commit: `07c8dfb`
+- target version: `0.3.2`
 
 ## Purpose
 
@@ -45,6 +45,8 @@ Review these routes explicitly:
 - whether `night` now changes article panels, buttons, and embedded surfaces consistently
 - whether the header/footer chrome feels intentional rather than decorative
 - whether the theme switcher reads as part of the site chrome instead of a generic pill
+- whether the footer terminal feels usable rather than gimmicky
+- whether `ls`, `pwd`, `cd about`, `cd blog`, `open se`, and `clear` behave reliably
 - whether the gravity layer feels appropriately shallow on phones and broader on desktop
 - mobile navigation visibility
 - whether personal content is mostly confined to `/about`

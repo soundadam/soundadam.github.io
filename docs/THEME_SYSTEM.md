@@ -1,8 +1,8 @@
 # Theme System
 
-- updated at: `2026-03-20T13:36:17+08:00`
-- base commit: `ccb687a`
-- target version: `0.3.1`
+- updated at: `2026-03-20T13:43:23+08:00`
+- base commit: `07c8dfb`
+- target version: `0.3.2`
 
 ## Purpose
 
@@ -89,6 +89,8 @@ Prefer this order:
   - terminal-like segmented control styling
 - `.site-window-dots` / `.gravity-shell-dots`
   - subtle macOS / terminal-window chrome accents
+- `.footer-terminal*`
+  - footer pseudo-shell used for controlled route navigation
 
 ## Embedded Gravity Layer
 
@@ -106,6 +108,27 @@ If the iframe looks out of sync with the main page, check:
 2. `src/app/layout.tsx`
 3. `public/playground/gravity.html`
 4. `public/playground/gravity.css`
+
+## Footer Terminal
+
+The footer terminal is intentionally not a real filesystem or command runner.
+
+Supported commands are limited to site navigation and inspection:
+
+- `ls`
+- `pwd`
+- `cd <route>`
+- `open <route>`
+- `help`
+- `clear`
+
+State is persisted in `sessionStorage` so transcript survives in-site route changes.
+
+If commands break, inspect:
+
+1. `src/components/footer-terminal-nav.tsx`
+2. `src/components/site-footer.tsx`
+3. `src/app/globals.css`
 
 ## Maintenance Notes
 
