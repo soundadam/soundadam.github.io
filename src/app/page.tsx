@@ -1,7 +1,7 @@
 import Link from "next/link";
 
+import { GravityPlayground } from "@/components/gravity-playground";
 import { PageShell } from "@/components/page-shell";
-import { EmojiTerminal } from "@/components/emoji-terminal";
 
 const entries = [
   {
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
       </section>
 
-      <EmojiTerminal />
+      <GravityPlayground />
     </PageShell>
   );
 }

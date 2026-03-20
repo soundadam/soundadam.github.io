@@ -34,8 +34,8 @@ Review these routes explicitly:
 
 - typography scale and spacing rhythm
 - whether the homepage feels restrained instead of decorative
-- whether the terminal playground feels like a side detail rather than the main content
-- whether particle mode drains cleanly into terminal mode
+- whether the transplanted gravity playground feels like a side detail rather than the main content
+- whether the iframe playground loads cleanly on desktop and mobile
 - mobile navigation visibility
 - whether personal content is mostly confined to `/about`
 - mobile layout behavior

@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.5 - 2026-03-20T12:02:00+08:00 - in progress
+## 0.2.6 - 2026-03-20T12:18:00+08:00 - in progress
+
+- Status:
+  - the homepage playground has been replaced by a direct transplant of the stronger local gravity demo
+  - the effect now relies on real physics instead of the previous hand-authored motion layer
+  - `CHANGELOG.md` remains the single timestamped recovery log
+- Implemented in this version so far:
+  - removed the custom pool component from the homepage path
+  - added a self-contained static gravity demo under `public/playground`
+  - added a homepage wrapper that embeds the transplanted demo directly
+
+## 0.2.5 - 2026-03-20T12:02:00+08:00 - `56228dd`
 
 - Status:
   - the homepage pool now emphasizes gravity more clearly

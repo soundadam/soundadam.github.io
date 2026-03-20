@@ -70,12 +70,16 @@ That demo work currently lives in `setrain` worktrees, not here.
   - Bootstrap CSS import
 - `src/app/globals.css`
   - custom design tokens and global page styling
-- `src/components/emoji-terminal.tsx`
-  - homepage playground with pool mode, drain transition, and terminal mode
+- `src/components/gravity-playground.tsx`
+  - homepage wrapper for the transplanted gravity demo
 - `src/content/blog-posts.ts`
   - static post metadata used by the blog index
-- `src/content/source-snippets.ts`
-  - curated source content for the terminal viewer
+- `public/playground/gravity.html`
+  - self-contained embedded demo entry point
+- `public/playground/gravity.css`
+  - transplanted demo styling
+- `public/playground/gravity.js`
+  - transplanted physics and rendering logic
 - `public/CNAME`
   - custom domain record for GitHub Pages
 - `.github/workflows/deploy-pages.yml`
@@ -115,6 +119,7 @@ Current visual intent:
 - personal details concentrated on `/about`
 - `se` kept visible, but not at the cost of clarity
 - the playground should feel like an optional side detail, not the primary narrative
+- when possible, prefer stronger transplanted interactions over weaker hand-made imitations
 
 Do not collapse the page into generic Bootstrap blocks just because Bootstrap is present. Bootstrap is the portability baseline, not the design language.
 
@@ -160,7 +165,7 @@ If the homepage looks wrong:
 5. verify GitHub Pages workflow still uploads the `out/` directory
 6. if behavior changed recently, compare against the last known-good commit from `CHANGELOG.md`
 7. on mobile, verify the header nav is still visible and wrapping instead of disappearing
-8. verify the homepage playground still defaults to pool mode and drains into terminal mode cleanly
+8. verify `/playground/gravity.html` loads and the iframe embed on `/` still works
 
 If deployment looks wrong:
 
