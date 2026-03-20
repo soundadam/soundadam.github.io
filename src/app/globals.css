@@ -35,6 +35,12 @@
   --color-button-secondary-hover: rgba(255, 255, 255, 0.98);
   --color-selection: rgba(155, 77, 35, 0.18);
   --color-shadow-rgb: 24 20 16;
+  --color-chrome: rgba(255, 252, 247, 0.62);
+  --color-chrome-border: rgba(48, 36, 30, 0.12);
+  --color-chrome-highlight: rgba(255, 255, 255, 0.66);
+  --color-dot-red: #cc7750;
+  --color-dot-yellow: #d3aa53;
+  --color-dot-green: #748f63;
 }
 
 :root[data-theme="ubuntu"] {
@@ -69,6 +75,12 @@
   --color-button-secondary-hover: rgba(95, 45, 77, 0.96);
   --color-selection: rgba(232, 104, 46, 0.24);
   --color-shadow-rgb: 3 2 7;
+  --color-chrome: rgba(66, 29, 54, 0.72);
+  --color-chrome-border: rgba(255, 214, 188, 0.14);
+  --color-chrome-highlight: rgba(255, 228, 204, 0.08);
+  --color-dot-red: #e95420;
+  --color-dot-yellow: #ffbf5a;
+  --color-dot-green: #77b255;
 }
 
 :root[data-theme="night"] {
@@ -103,6 +115,12 @@
   --color-button-secondary-hover: rgba(37, 49, 63, 0.98);
   --color-selection: rgba(120, 169, 255, 0.2);
   --color-shadow-rgb: 0 0 0;
+  --color-chrome: rgba(20, 29, 38, 0.72);
+  --color-chrome-border: rgba(145, 173, 204, 0.14);
+  --color-chrome-highlight: rgba(232, 238, 245, 0.06);
+  --color-dot-red: #7e9cff;
+  --color-dot-yellow: #8bc7c8;
+  --color-dot-green: #88a7c6;
 }
 
 @theme inline {
@@ -200,4 +218,130 @@ li {
 .article-card {
   border: 1px solid var(--color-border);
   background: var(--color-surface-soft);
+}
+
+.site-chrome-shell {
+  border: 1px solid var(--color-chrome-border);
+  background: var(--color-chrome);
+  box-shadow:
+    inset 0 1px 0 var(--color-chrome-highlight),
+    0 10px 28px rgba(var(--color-shadow-rgb), 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.site-window-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.site-window-dots span {
+  height: 0.58rem;
+  width: 0.58rem;
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 1px 2px rgba(var(--color-shadow-rgb), 0.16);
+}
+
+.site-window-dots span:nth-child(1) {
+  background: var(--color-dot-red);
+}
+
+.site-window-dots span:nth-child(2) {
+  background: var(--color-dot-yellow);
+}
+
+.site-window-dots span:nth-child(3) {
+  background: var(--color-dot-green);
+}
+
+.theme-toggle-shell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid var(--color-chrome-border);
+  border-radius: 999px;
+  background: var(--color-chrome);
+  padding: 0.25rem;
+  box-shadow: inset 0 1px 0 var(--color-chrome-highlight);
+  backdrop-filter: blur(14px);
+}
+
+.theme-toggle-label {
+  padding-inline: 0.55rem 0.25rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.theme-toggle-button {
+  min-height: 2rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding-inline: 0.78rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.theme-toggle-button:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle-button-active {
+  border-color: var(--color-border-strong);
+  background: color-mix(in srgb, var(--color-accent) 18%, var(--color-panel-strong));
+  color: var(--color-text);
+}
+
+.theme-toggle-button-idle {
+  color: var(--color-text-muted);
+}
+
+.theme-toggle-button-idle:hover {
+  background: color-mix(in srgb, var(--color-panel-strong) 92%, transparent);
+  color: var(--color-text);
+}
+
+.footer-command {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.gravity-shell-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.gravity-shell-dots span {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 999px;
+  opacity: 0.86;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 1px 2px rgba(var(--color-shadow-rgb), 0.16);
+}
+
+.gravity-shell-dots span:nth-child(1) {
+  background: var(--color-dot-red);
+}
+
+.gravity-shell-dots span:nth-child(2) {
+  background: var(--color-dot-yellow);
+}
+
+.gravity-shell-dots span:nth-child(3) {
+  background: var(--color-dot-green);
 }

@@ -108,14 +108,22 @@ body {
   border: 1px solid var(--demo-control-border);
   border-radius: 999px;
   background: var(--demo-control-bg);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px) saturate(120%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 14px 26px var(--demo-shadow);
   opacity: 0.24;
-  transition: opacity 180ms ease, background-color 180ms ease;
+  transition:
+    opacity 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
 .claude-gravity-demo:hover .demo-field-controls,
 .demo-field-controls:focus-within {
   opacity: 0.88;
+  transform: translateY(-1px);
 }
 
 .demo-field-button {
@@ -126,17 +134,21 @@ body {
   color: var(--demo-control-text);
   cursor: pointer;
   font: inherit;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1;
   padding: 8px 10px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: background-color 140ms ease, color 140ms ease;
+  letter-spacing: 0.12em;
+  transition:
+    background-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease;
 }
 
 .demo-field-button:hover {
   background: var(--demo-control-hover);
   color: var(--demo-control-text-strong);
+  transform: translateY(-1px);
 }
 
 .demo-field-button.is-active {

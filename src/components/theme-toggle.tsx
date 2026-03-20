@@ -43,9 +43,10 @@ export function ThemeToggle() {
   return (
     <div
       aria-label="Theme preference"
-      className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-panel)] p-1"
+      className="theme-toggle-shell"
       role="group"
     >
+      <span className="theme-toggle-label font-mono">theme</span>
       {THEME_NAMES.map((themeName) => {
         const active = themeName === theme;
 
@@ -57,10 +58,10 @@ export function ThemeToggle() {
               applyTheme(themeName);
               setTheme(themeName);
             }}
-            className={`min-h-8 rounded-full px-3 text-[11px] font-semibold tracking-[0.08em] uppercase transition-colors ${
+            className={`theme-toggle-button font-mono ${
               active
-                ? "bg-[var(--color-text)] text-[var(--color-panel-strong)]"
-                : "text-[var(--color-text-muted)] hover:bg-[var(--color-panel-strong)] hover:text-[var(--color-text)]"
+                ? "theme-toggle-button-active"
+                : "theme-toggle-button-idle"
             }`}
           >
             {THEME_META[themeName].label}

@@ -1,8 +1,8 @@
 # Theme System
 
-- updated at: `2026-03-20T13:29:35+08:00`
-- base commit: `127c491`
-- target version: `0.3.0`
+- updated at: `2026-03-20T13:36:17+08:00`
+- base commit: `ccb687a`
+- target version: `0.3.1`
 
 ## Purpose
 
@@ -63,6 +63,13 @@ Prefer this order:
   - `--color-border-strong`
   - `--color-selection`
   - `--color-shadow-rgb`
+- chrome layer
+  - `--color-chrome`
+  - `--color-chrome-border`
+  - `--color-chrome-highlight`
+  - `--color-dot-red`
+  - `--color-dot-yellow`
+  - `--color-dot-green`
 
 ## Shared Classes
 
@@ -76,6 +83,12 @@ Prefer this order:
   - long-form article container
 - `.article-card`
   - nested surface card inside article routes
+- `.site-chrome-shell`
+  - shared shell treatment for header/footer-style containers
+- `.theme-toggle-*`
+  - terminal-like segmented control styling
+- `.site-window-dots` / `.gravity-shell-dots`
+  - subtle macOS / terminal-window chrome accents
 
 ## Embedded Gravity Layer
 

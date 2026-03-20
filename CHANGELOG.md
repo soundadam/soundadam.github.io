@@ -15,7 +15,18 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.3.0 - 2026-03-20T13:29:35+08:00 - in progress
+## 0.3.1 - 2026-03-20T13:36:17+08:00 - in progress
+
+- Status:
+  - the Ubuntu palette is now being carried through site chrome instead of only content surfaces
+  - header, footer, theme switcher, and gravity controls are moving toward a quieter terminal-window language
+- Implemented in this version so far:
+  - added shared chrome tokens for shell backgrounds, highlights, and window-control dots
+  - refined the header and footer into subtle panel-like containers
+  - rebuilt the theme toggle as a small terminal-style segmented control
+  - gave the gravity wrapper and field-control pill a more cohesive terminal-like texture
+
+## 0.3.0 - 2026-03-20T13:29:35+08:00 - `ccb687a`
 
 - Status:
   - `mist` is being retired in favor of a darker Ubuntu-terminal-inspired theme

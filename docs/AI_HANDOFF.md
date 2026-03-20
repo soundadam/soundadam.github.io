@@ -52,13 +52,13 @@ That demo work currently lives in `setrain` worktrees, not here.
 
 ## Last Theme Pass
 
-- updated at: `2026-03-20T13:29:35+08:00`
-- base commit before this pass: `127c491`
-- target version: `0.3.0`
+- updated at: `2026-03-20T13:36:17+08:00`
+- base commit before this pass: `ccb687a`
+- target version: `0.3.1`
 - active objective:
-  - replace `mist` with an Ubuntu-terminal-inspired theme
-  - stop relying on page-local hard-coded whites and gradients
-  - keep the embedded gravity layer visually coherent with site-wide theme preference
+  - carry the Ubuntu direction into shared chrome, not just page surfaces
+  - make header, footer, theme switcher, and gravity controls read more like one system
+  - preserve the restrained homepage tone while adding a more deliberate terminal-window texture
 
 ## Important Files
 
