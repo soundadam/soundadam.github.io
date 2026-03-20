@@ -54,6 +54,7 @@ The footer terminal is intentionally a bounded pseudo-shell for navigation only.
 
 - updated at: `2026-03-20T14:47:30+08:00`
 - base commit before this pass: `c9dfe39`
+- implementation commit: `aae8124`
 - target version: `0.3.6`
 - active objective:
   - add a dedicated `/term` page for the real terminal beta path

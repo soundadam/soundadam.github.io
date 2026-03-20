@@ -15,7 +15,7 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.3.6 - 2026-03-20T14:47:30+08:00 - in progress
+## 0.3.6 - 2026-03-20T14:47:30+08:00 - `aae8124`
 
 - Status:
   - the site now has a dedicated `/term` beta route for the real terminal path
