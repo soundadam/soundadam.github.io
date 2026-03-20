@@ -1,0 +1,64 @@
+# Changelog
+
+All notable changes to `soundadam.github.io` are recorded here.
+
+The format is intentionally practical rather than formal:
+
+- each entry keeps an explicit version
+- each entry keeps an absolute timestamp
+- each entry keeps the git commit for source recovery
+- entries are written for future debugging and AI handoff
+
+Rollback rule:
+
+- use Git history for rollback
+- do not hand-edit files to simulate rollback
+- prefer checkout / revert / branch-from-commit workflows so state remains traceable
+
+## 0.1.5 - 2026-03-20T00:00:00+08:00 - in progress
+
+- Status:
+  - repository is now the primary working surface
+  - `setrain` should stay unchanged except for micro-tweaks to the legacy `app/se-demo` / Gradio path
+  - Bootstrap has been adopted as a baseline dependency for portability to your own server
+  - Git should be the only rollback mechanism
+- Intent:
+  - keep the homepage repo independently operable
+  - make future debugging easier for another AI or human collaborator
+- Planned records in this version:
+  - add explicit version tracking
+  - add retroactive changelog entries for previous work
+  - add a local review runbook
+  - add an AI handoff / debug brief
+  - document Git-based rollback workflow
+
+## 0.1.4 - 2026-03-19T22:53:45+08:00 - `63fc7d4`
+
+- Added Bootstrap baseline to the homepage repository.
+- Imported `bootstrap/dist/css/bootstrap.min.css` at the app layout layer.
+- Kept the custom visual language on top of the Bootstrap baseline.
+- This change is primarily about portability and easier migration to your own server stack.
+
+## 0.1.3 - 2026-03-19T21:59:49+08:00 - `3b03bf5`
+
+- Elevated the homepage art direction.
+- Tightened the layout rhythm and landing page hierarchy.
+- Preserved the sparse, editorial technical tone while making the page feel more intentional.
+
+## 0.1.2 - 2026-03-19T21:58:05+08:00 - `3b1375a`
+
+- Refined the homepage layout after the first landing page pass.
+- Reduced visual noise and moved toward a calmer, more restrained structure.
+- Added the custom domain file for `soundadam.com`.
+
+## 0.1.1 - 2026-03-19T21:52:00+08:00 - `c687e5e`
+
+- Expanded the initial landing page into a fuller homepage.
+- Added stronger project framing around `setrain`.
+- Added GitHub Pages deployment workflow and static export support.
+
+## 0.1.0 - 2026-03-19T21:44:04+08:00 - `1be2fbb`
+
+- Initialized the repository.
+- Scaffolded the Next.js app.
+- Established the first homepage shell and deployment baseline.

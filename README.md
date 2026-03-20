@@ -2,6 +2,8 @@
 
 Personal homepage for Adam's audio, systems, and machine learning work.
 
+Current tracked version: `0.1.5`
+
 The current version is intentionally focused:
 
 - one-page landing site
@@ -29,6 +31,13 @@ pnpm build
 ## Deployment
 
 Push to `main` and let the GitHub Actions workflow publish the exported site to GitHub Pages.
+
+## Operational Docs
+
+- `CHANGELOG.md`
+- `docs/AI_HANDOFF.md`
+- `docs/LOCAL_REVIEW.md`
+- `VERSION`
 
 ## Structure
 

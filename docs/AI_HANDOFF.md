@@ -1,0 +1,151 @@
+# AI Handoff
+
+## Purpose
+
+This document is a compact handoff for another AI agent or engineer who needs to continue work on `soundadam.github.io` without re-deriving project context from scratch.
+
+## Repo Role
+
+`soundadam.github.io` is the personal homepage repository.
+
+It is intentionally separate from `setrain`.
+
+Current policy:
+
+- work on the homepage, docs, deployment notes, and local review flow here
+- do not treat `setrain` as the primary editable repo
+- only touch `setrain` for micro-adjustments to the legacy Gradio path if explicitly required
+
+## Current Product Shape
+
+- domain target: `soundadam.com`
+- fallback / GitHub Pages address: `soundadam.github.io`
+- current app type: static Next.js homepage
+- deployment mode: GitHub Pages static export
+
+This repo is the calm public front door.
+
+The future speech-enhancement demo is expected to live separately under:
+
+- `https://se.soundadam.com`
+- same-origin API pattern: `/api/*`
+
+That demo work currently lives in `setrain` worktrees, not here.
+
+## Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Bootstrap 5.3 baseline
+- static export enabled in `next.config.ts`
+
+## Important Files
+
+- `src/app/page.tsx`
+  - homepage content and structure
+- `src/app/layout.tsx`
+  - global app layout
+  - Google font setup
+  - Bootstrap CSS import
+- `src/app/globals.css`
+  - custom design tokens and global page styling
+- `public/CNAME`
+  - custom domain record for GitHub Pages
+- `.github/workflows/deploy-pages.yml`
+  - Pages deployment workflow
+- `CHANGELOG.md`
+  - retroactive and forward changelog
+
+## Local Review
+
+Use:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Default URL:
+
+```text
+http://localhost:3000
+```
+
+Validation:
+
+```bash
+pnpm lint
+pnpm build
+```
+
+## Design Direction
+
+Current visual intent:
+
+- sparse rather than content-heavy
+- editorial and technical, not startup-generic
+- warm surfaces instead of flat white
+- strong display typography with restrained copy density
+- `setrain` as the single most important outbound path
+
+Do not collapse the page into generic Bootstrap blocks just because Bootstrap is present. Bootstrap is the portability baseline, not the design language.
+
+## Known Constraints
+
+- the homepage should remain relatively spare for now
+- links and sections can expand later, but the current intent is a quiet front door
+- Bootstrap must remain available because the user wants easier migration to their own server
+- future demo integration should be linked clearly but not embedded as a half-working live app here
+- rollback must be Git-based, not manual file surgery
+
+## Rollback Procedure
+
+Use Git, not ad hoc edits.
+
+Preferred patterns:
+
+```bash
+git log --oneline --decorate -10
+git switch -c debug/<short-name> <commit>
+```
+
+If you need to inspect an old version without moving `main`, branch from the target commit.
+
+If you need to undo a pushed commit while preserving history, prefer:
+
+```bash
+git revert <commit>
+```
+
+Avoid forceful history rewriting unless explicitly required.
+
+## Debug Checklist
+
+If the homepage looks wrong:
+
+1. verify `bootstrap/dist/css/bootstrap.min.css` is still imported in `src/app/layout.tsx`
+2. verify custom tokens in `src/app/globals.css` still override the baseline effectively
+3. run `pnpm build` and check for app-router or CSS issues
+4. verify `public/CNAME` still matches the intended domain
+5. verify GitHub Pages workflow still uploads the `out/` directory
+6. if behavior changed recently, compare against the last known-good commit from `CHANGELOG.md`
+
+If deployment looks wrong:
+
+1. verify `next.config.ts` still has `output: "export"`
+2. verify GitHub Pages is configured to deploy from GitHub Actions
+3. verify DNS for `soundadam.com`
+4. verify the latest workflow run succeeded
+
+## Related External Context
+
+There is parallel work in `setrain` for:
+
+- `frontend-redesign-shell`
+- `frontend-redesign-live-demo`
+- `frontend-redesign-gallery`
+- `frontend-redesign-deploy`
+
+That work is relevant context, but should not automatically pull this repo back into `setrain`-style development.
