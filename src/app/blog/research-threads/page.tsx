@@ -23,7 +23,7 @@ const threads = [
 export default function ResearchThreadsPage() {
   return (
     <PageShell>
-      <article className="rounded-[40px] border border-white/60 bg-[linear-gradient(145deg,rgba(255,250,243,0.94),rgba(244,237,227,0.98))] px-6 py-10 shadow-[0_24px_80px_rgba(24,20,16,0.10)] backdrop-blur sm:px-8 lg:px-10">
+      <article className="article-panel rounded-[40px] px-6 py-10 sm:px-8 lg:px-10">
         <p className="text-sm tracking-[0.18em] text-[var(--color-accent-strong)] uppercase">
           Research
         </p>
@@ -37,7 +37,7 @@ export default function ResearchThreadsPage() {
           {threads.map((thread) => (
             <section
               key={thread.title}
-              className="rounded-[28px] border border-[var(--color-border)] bg-white/70 px-5 py-5"
+              className="article-card rounded-[28px] px-5 py-5"
             >
               <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-[-0.03em] text-[var(--color-text)]">
                 {thread.title}
@@ -51,13 +51,13 @@ export default function ResearchThreadsPage() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/about"
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-accent),var(--color-accent-strong))] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-cream)]"
+            className="site-button site-button-primary"
           >
             Read the about page
           </Link>
           <Link
             href="/blog"
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-white px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)]"
+            className="site-button site-button-secondary"
           >
             Back to blog
           </Link>

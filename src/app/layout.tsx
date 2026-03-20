@@ -4,6 +4,8 @@ import Script from "next/script";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 
+import { DEFAULT_THEME, THEME_META } from "@/lib/themes";
+
 const display = Space_Grotesk({
   variable: "--font-display",
   subsets: ["latin"],
@@ -22,9 +24,12 @@ export const metadata: Metadata = {
 const themeBootScript = `
 (() => {
   try {
-    const theme = localStorage.getItem("soundadam-theme") || "sand";
+    const themes = ${JSON.stringify(THEME_META)};
+    const fallback = "${DEFAULT_THEME}";
+    const stored = localStorage.getItem("soundadam-theme");
+    const theme = stored && Object.hasOwn(themes, stored) ? stored : fallback;
     document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme === "night" ? "dark" : "light";
+    document.documentElement.style.colorScheme = themes[theme].scheme;
   } catch {}
 })();
 `;
@@ -38,7 +43,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${display.variable} ${body.variable} h-full antialiased`}
-      data-theme="sand"
+      data-theme={DEFAULT_THEME}
       style={{ colorScheme: "light" }}
       suppressHydrationWarning
     >

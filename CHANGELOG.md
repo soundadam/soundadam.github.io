@@ -15,7 +15,20 @@ Rollback rule:
 - do not hand-edit files to simulate rollback
 - prefer checkout / revert / branch-from-commit workflows so state remains traceable
 
-## 0.2.9 - 2026-03-20T13:20:00+08:00 - in progress
+## 0.3.0 - 2026-03-20T13:29:35+08:00 - in progress
+
+- Status:
+  - `mist` is being retired in favor of a darker Ubuntu-terminal-inspired theme
+  - the site is moving from raw palette swapping to semantic theme tokens
+  - dark-mode adaptation is being extended into article surfaces, buttons, and the embedded gravity iframe
+- Implemented in this version so far:
+  - replaced the light blue `mist` direction with a warm aubergine `ubuntu` theme
+  - added semantic surface and button tokens so pages stop hard-coding `white`, gradient fills, and light-only panel assumptions
+  - updated the blog article routes and call-to-action buttons to consume shared theme classes
+  - made the embedded gravity page read the same theme preference from `localStorage`
+  - retained Git-based rollback and timestamped documentation for AI handoff
+
+## 0.2.9 - 2026-03-20T13:20:00+08:00 - `127c491`
 
 - Status:
   - theme boot now avoids the dev-only hydration warning that appeared after adding pre-hydration palette selection

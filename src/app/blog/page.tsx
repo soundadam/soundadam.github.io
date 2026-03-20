@@ -51,7 +51,7 @@ export default function BlogPage() {
         </p>
         <Link
           href="/se"
-          className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--color-border)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-white"
+          className="site-button site-button-secondary mt-6"
         >
           Open the SE page
         </Link>

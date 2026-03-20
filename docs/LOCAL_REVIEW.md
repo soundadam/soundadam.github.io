@@ -1,5 +1,9 @@
 # Local Review
 
+- updated at: `2026-03-20T13:29:35+08:00`
+- base commit: `127c491`
+- target version: `0.3.0`
+
 ## Purpose
 
 This runbook is for opening the homepage locally for review.
@@ -37,6 +41,8 @@ Review these routes explicitly:
 - whether the transplanted gravity playground feels like a side detail rather than the main content
 - whether the iframe playground loads cleanly on desktop and mobile
 - whether changing theme updates the whole page palette, not just the toggle itself
+- whether the `ubuntu` theme feels warmer and more terminal-like than the previous `mist` direction
+- whether `night` now changes article panels, buttons, and embedded surfaces consistently
 - whether the gravity layer feels appropriately shallow on phones and broader on desktop
 - mobile navigation visibility
 - whether personal content is mostly confined to `/about`

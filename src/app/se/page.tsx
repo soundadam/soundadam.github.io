@@ -49,7 +49,7 @@ export default function SePage() {
             </p>
             <Link
               href="/blog/static-vs-live"
-              className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--color-border)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-white"
+              className="site-button site-button-secondary mt-6"
             >
               Read the architecture note
             </Link>
@@ -92,7 +92,7 @@ export default function SePage() {
           href="https://github.com/soundadam/setrain"
           target="_blank"
           rel="noreferrer"
-          className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--color-border)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-white"
+          className="site-button site-button-secondary mt-6"
         >
           Open setrain repository
         </a>

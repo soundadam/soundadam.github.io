@@ -50,6 +50,16 @@ That demo work currently lives in `setrain` worktrees, not here.
 - Bootstrap 5.3 baseline
 - static export enabled in `next.config.ts`
 
+## Last Theme Pass
+
+- updated at: `2026-03-20T13:29:35+08:00`
+- base commit before this pass: `127c491`
+- target version: `0.3.0`
+- active objective:
+  - replace `mist` with an Ubuntu-terminal-inspired theme
+  - stop relying on page-local hard-coded whites and gradients
+  - keep the embedded gravity layer visually coherent with site-wide theme preference
+
 ## Important Files
 
 - `src/app/page.tsx`
@@ -70,8 +80,11 @@ That demo work currently lives in `setrain` worktrees, not here.
   - Bootstrap CSS import
 - `src/app/globals.css`
   - custom design tokens and global page styling
+  - shared semantic classes for buttons and article surfaces
 - `src/components/theme-toggle.tsx`
   - client-side site-wide theme preference control
+- `src/lib/themes.ts`
+  - theme registry for labels and light/dark scheme metadata
 - `src/components/gravity-playground.tsx`
   - homepage wrapper for the transplanted gravity demo
 - `src/content/blog-posts.ts`
@@ -80,8 +93,12 @@ That demo work currently lives in `setrain` worktrees, not here.
   - self-contained embedded demo entry point
 - `public/playground/gravity.css`
   - transplanted demo styling and lower-left field controls
+  - theme-aware demo shell variables
 - `public/playground/gravity.js`
   - transplanted physics and rendering logic with mouse-nearby pull / push fields
+- `docs/THEME_SYSTEM.md`
+  - semantic theme-token reference
+  - maintenance notes for future palette additions
 - `public/CNAME`
   - custom domain record for GitHub Pages
 - `.github/workflows/deploy-pages.yml`
@@ -123,6 +140,7 @@ Current visual intent:
 - the playground should feel like an optional side detail, not the primary narrative
 - when possible, prefer stronger transplanted interactions over weaker hand-made imitations
 - theme preference should affect the overall site palette, not a single widget
+- the safest way to scale themes is semantic tokens first, not page-by-page color edits
 
 Do not collapse the page into generic Bootstrap blocks just because Bootstrap is present. Bootstrap is the portability baseline, not the design language.
 
@@ -170,6 +188,7 @@ If the homepage looks wrong:
 7. on mobile, verify the header nav is still visible and wrapping instead of disappearing
 8. verify `/playground/gravity.html` loads and the iframe embed on `/` still works
 9. verify theme selection persists and updates the page palette before and after navigation
+10. verify both dark themes update article panels, secondary buttons, and the iframe shell consistently instead of leaving light surfaces behind
 
 If deployment looks wrong:
 

@@ -47,13 +47,13 @@ export default function Home() {
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--color-text)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-strong)] sm:w-auto"
+            className="site-button site-button-primary w-full sm:w-auto"
             href="/se"
           >
             Open SE page
           </Link>
           <Link
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[var(--color-border)] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-colors hover:bg-white sm:w-auto"
+            className="site-button site-button-secondary w-full sm:w-auto"
             href="/about"
           >
             About me

@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gravity Playground</title>
+    <script>
+      (() => {
+        try {
+          const applyTheme = (theme) => {
+            const next = theme || localStorage.getItem("soundadam-theme") || "sand";
+            document.documentElement.dataset.theme = next;
+            document.documentElement.style.colorScheme = next === "sand" ? "light" : "dark";
+          };
+
+          applyTheme();
+          window.addEventListener("storage", (event) => {
+            if (!event.key || event.key === "soundadam-theme") {
+              applyTheme(event.newValue || undefined);
+            }
+          });
+        } catch {}
+      })();
+    </script>
     <link rel="stylesheet" href="./gravity.css" />
   </head>
   <body>

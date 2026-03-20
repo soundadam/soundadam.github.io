@@ -5,7 +5,7 @@ import { PageShell } from "@/components/page-shell";
 export default function StaticVsLivePage() {
   return (
     <PageShell>
-      <article className="rounded-[40px] border border-white/60 bg-[linear-gradient(145deg,rgba(255,250,243,0.94),rgba(244,237,227,0.98))] px-6 py-10 shadow-[0_24px_80px_rgba(24,20,16,0.10)] backdrop-blur sm:px-8 lg:px-10">
+      <article className="article-panel rounded-[40px] px-6 py-10 sm:px-8 lg:px-10">
         <p className="text-sm tracking-[0.18em] text-[var(--color-accent-strong)] uppercase">
           Architecture
         </p>
@@ -40,13 +40,13 @@ export default function StaticVsLivePage() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/se"
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-accent),var(--color-accent-strong))] px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-cream)]"
+            className="site-button site-button-primary"
           >
             Open the SE page
           </Link>
           <Link
             href="/blog"
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-white px-5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)]"
+            className="site-button site-button-secondary"
           >
             Back to blog
           </Link>
